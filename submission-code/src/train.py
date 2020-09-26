@@ -37,7 +37,7 @@ load_model = False
 save_model = True
 
 # Training hyperparameters
-num_epochs = 1
+num_epochs = 200
 learning_rate = 1e-4
 batch_size = 128
 
@@ -119,13 +119,14 @@ for epoch in range(num_epochs):
         # score = my_metric(test_data, model, english, bash, device, True)
         bleu_score = bleu(test_data, model, english, bash, device, False)
         with open("/tmp/pycharm_project_78/submission-code/src/submission_code/test.json") as f:
-            test_data = f.readlines()
+            td = f.readlines()
         # you may also want to remove whitespace characters like `\n` at the end of each line
-        test_data = [x.strip() for x in test_data]
-        real_score = competition_metric(test_data, model, english, bash, device, False)
+        td = [x.strip() for x in td]
+        real_score = competition_metric(td, model, english, bash, device, False)
         wandb.log({"real_score": real_score})
         wandb.log({"bleu_score": bleu_score})
         print(bleu_score)
+        print(real_score)
     model.train()
     losses = []
 
