@@ -145,7 +145,7 @@ def ast2tokens(node, loose_constraints=False, ignore_flag_order=False,
                 tokens += to_tokens_fun(child)
         elif node.is_option():
             assert(loose_constraints or node.parent)
-            if '::' in node.value and (node.value.startswith('-exec') or 
+            if '::' in node.value and (node.value.startswith('-exec') or
                                        node.value.startswith('-ok')):
                 value, op = node.value.split('::')
                 token = value
@@ -263,7 +263,7 @@ def ast2template(node, loose_constraints=False, ignore_flag_order=False,
     argument types flags are alphabetically ordered.
     """
     tokens = ast2tokens(node, loose_constraints, ignore_flag_order,
-                        arg_type_only=arg_type_only, 
+                        arg_type_only=arg_type_only,
                         indexing_args=indexing_args,
                         keep_common_args=keep_common_args)
     return ' '.join(tokens)
@@ -275,7 +275,7 @@ def cmd2template(cmd, recover_quotation=True, arg_type_only=True,
     and argument types flags are alphabetically ordered.
     """
     tree = lint.normalize_ast(cmd, recover_quotation, verbose=verbose)
-    return ast2template(tree, loose_constraints=loose_constraints, 
+    return ast2template(tree, loose_constraints=loose_constraints,
                         arg_type_only=arg_type_only)
 
 

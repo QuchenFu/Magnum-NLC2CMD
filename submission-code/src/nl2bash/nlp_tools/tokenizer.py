@@ -13,8 +13,8 @@ import re, sys
 if sys.version_info > (3, 0):
     from six.moves import xrange
 
-from . import constants, ner
-from .spellcheck import spell_check as spc
+from nl2bash.nlp_tools import constants, ner
+from nl2bash.nlp_tools.spellcheck import spell_check as spc
 
 # from nltk.stem.wordnet import WordNetLemmatizer
 # lmtzr = WordNetLemmatizer()
@@ -104,20 +104,20 @@ def basic_tokenizer(sentence, to_lower_case=True, lemmatization=True,
     sentence = clean_sentence(sentence)
     words = [x[0] for x in re.findall(
         constants._WORD_SPLIT_RESPECT_QUOTES, sentence)]
-    
+
     normalized_words = []
     for i in xrange(len(words)):
         word = words[i].strip()
 
         if word in ['"', '\'']:
             continue
-        
+
         # normalize to lower cases
         if to_lower_case:
             if len(word) > 1 and constants.is_english_word(word) \
                     and not constants.with_quotation(word):
                 word = word.lower()
-        
+
         # spelling correction
         if correct_spell:
             if word.isalpha() and word.islower() and len(word) > 2:
@@ -126,22 +126,22 @@ def basic_tokenizer(sentence, to_lower_case=True, lemmatization=True,
                 if word != old_w:
                     if verbose:
                         print("spell correction: {} -> {}".format(old_w, word))
-       
+
         # remove English stopwords
         if remove_stop_words:
             if word.lower() in constants.ENGLISH_STOPWORDS:
                 continue
-      
+
         # covert number words into numbers
         if word in constants.word2num:
             word = str(constants.word2num[word])
-     
+
         # lemmatization
         if lemmatization and not constants.starts_with_quotation(word) \
                 and not constants.ends_with_quotation(word) \
                 and not re.match(constants._SPECIAL_SYMBOL_RE, word):
             word = stemmer.stem(word)
-    
+
         # remove empty words
         if not word.strip():
             continue
@@ -168,10 +168,12 @@ def ner_tokenizer(sentence, to_lower_case=True, lemmatization=True,
 def test_nl_tokenizer():
     while True:
         nl = input("> ")
-        tokens, ners = basic_tokenizer(nl)
-        print(tokens, ners)
+        # tokens, ners = basic_tokenizer(nl)
+        # print(tokens, ners)
         tokens, ners = ner_tokenizer(nl)
-        print(tokens, ners)        
+        print(tokens)
+        print("###########")
+        print(ners)
 
 
 if __name__ == '__main__':

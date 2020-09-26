@@ -1,51 +1,28 @@
+
 import torch
 import torch.optim as optim
-from helper import load_checkpoint, translate_sentence
+from model.helper import load_checkpoint, translate_sentence
 from torchtext.data import Field, TabularDataset
-from bashlint.data_tools import bash_tokenizer
-from nlp_tools import tokenizer
-from Transformer import Transformer
+from nl2bash.bashlint.data_tools import bash_tokenizer
+from nl2bash.nlp_tools import tokenizer
+from model.Transformer import Transformer
+
+def tokenize_eng(text):
+    return tokenizer.ner_tokenizer(text)[0]
+
+
+def tokenize_bash(text):
+    return bash_tokenizer(text)
+
 def predict(invocations, result_cnt=5):
-    """ 
-    Function called by the evaluation script to interface the participants model
-    `predict` function accepts the natural language invocations as input, and returns
-    the predicted commands along with confidences as output. For each invocation, 
-    `result_cnt` number of predicted commands are expected to be returned.
-    
-    Args:
-        1. invocations : `list (str)` : list of `n_batch` (default 16) natural language invocations
-        2. result_cnt : `int` : number of predicted commands to return for each invocation
 
-    Returns:
-        1. commands : `list [ list (str) ]` : a list of list of strings of shape (n_batch, result_cnt)
-        2. confidences: `list[ list (float) ]` : confidences corresponding to the predicted commands
-                                                 confidence values should be between 0.0 and 1.0. 
-                                                 Shape: (n_batch, result_cnt)
-    """
 
-    n_batch = len(invocations)
-    
-    # `commands` and `confidences` have shape (n_batch, result_cnt)
-    commands = [
-        [''] * result_cnt
-        for _ in range(n_batch)
-    ]
-    cf=[1.0] * (result_cnt-1)
-    cf.append(0)
-    confidences = [
-        cf
-        for _ in range(n_batch)
-    ]
-
-    ################################################################################################
-    #     Participants should add their codes to fill predict `commands` and `confidences` here    #
-    ################################################################################################
     english = Field(tokenize=tokenize_eng, lower=True, init_token="<sos>", eos_token="<eos>")
     bash = Field(tokenize=tokenize_bash, lower=True, init_token="<sos>", eos_token="<eos>")
     fields = {"English": ("eng", english), "Bash": ("bash", bash)}
     train_data, test_data = TabularDataset.splits(
-        path="", train="src/submission_code/train.json",
-        test="src/submission_code/test.json", format="json",
+        path="", train="/tmp/pycharm_project_63/submission-code/src/submission_code/train.json",
+        test="/tmp/pycharm_project_63/submission-code/src/submission_code/test.json", format="json",
         fields=fields
     )
     english.build_vocab(train_data, max_size=10000, min_freq=2)
@@ -87,8 +64,43 @@ def predict(invocations, result_cnt=5):
 
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     if load_model:
-        load_checkpoint(torch.load("src/submission_code/my_checkpoint.pth.tar", map_location='cpu'), model, optimizer)
+        load_checkpoint(torch.load("/tmp/pycharm_project_63/submission-code/src/my_checkpoint.pth.tar", map_location='cpu'), model, optimizer)
 
+
+    """
+    Function called by the evaluation script to interface the participants model
+    `predict` function accepts the natural language invocations as input, and returns
+    the predicted commands along with confidences as output. For each invocation,
+    `result_cnt` number of predicted commands are expected to be returned.
+
+    Args:
+        1. invocations : `list (str)` : list of `n_batch` (default 16) natural language invocations
+        2. result_cnt : `int` : number of predicted commands to return for each invocation
+
+    Returns:
+        1. commands : `list [ list (str) ]` : a list of list of strings of shape (n_batch, result_cnt)
+        2. confidences: `list[ list (float) ]` : confidences corresponding to the predicted commands
+                                                 confidence values should be between 0.0 and 1.0.
+                                                 Shape: (n_batch, result_cnt)
+    """
+
+    n_batch = len(invocations)
+
+    # `commands` and `confidences` have shape (n_batch, result_cnt)
+    commands = [
+        [''] * result_cnt
+        for _ in range(n_batch)
+    ]
+    cf=[1.0] * (result_cnt-1)
+    cf.append(0)
+    confidences = [
+        cf
+        for _ in range(n_batch)
+    ]
+
+    ################################################################################################
+    #     Participants should add their codes to fill predict `commands` and `confidences` here    #
+    ################################################################################################
     for idx, inv in enumerate(invocations):
 
         # Call the translate method to retrieve translations and scores
@@ -106,10 +118,3 @@ def predict(invocations, result_cnt=5):
     ################################################################################################
 
     return commands, confidences
-
-def tokenize_eng(text):
-    return tokenizer.ner_tokenizer(text)[0]
-
-
-def tokenize_bash(text):
-    return bash_tokenizer(text)
