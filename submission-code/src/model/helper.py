@@ -1,6 +1,11 @@
 import torch
 from nl2bash.nlp_tools import tokenizer
 import nltk
+import os
+from matplotlib import pyplot as plt
+import numpy as np
+from nl2bash.metric import metric_utils
+import json
 
 smoothing = nltk.translate.bleu_score.SmoothingFunction()
 
@@ -39,10 +44,63 @@ def translate_sentence(model, sentence, english, bash, device, max_length=30):
 
 def save_checkpoint(state, filename="my_checkpoint.pth.tar"):
     print("=> Saving checkpoint")
-    torch.save(state, filename)
+    path=os.path.join("/tmp/pycharm_project_78/submission-code/src/", filename)
+    torch.save(state, path)
 
 
 def load_checkpoint(checkpoint, model, optimizer):
     print("=> Loading checkpoint")
     model.load_state_dict(checkpoint["state_dict"])
     optimizer.load_state_dict(checkpoint["optimizer"])
+
+def bleu(data, model, english, bash, device, detail):
+    averagebleu = 0
+    bleus=[]
+    for example in data:
+        targets = []
+        src = example.eng
+        trg = example.bash
+        prediction = translate_sentence(model, src, english, bash, device, max_length=50)
+        prediction = prediction[:-1]  # remove <eos> token
+        targets.append(trg)
+        bleu = nltk.translate.bleu_score.sentence_bleu(targets, prediction,
+                                                       smoothing_function=smoothing.method1, auto_reweigh=True)
+        if detail:
+            print(bleu)
+            print(prediction)
+            print(trg)
+        averagebleu = averagebleu + bleu
+        bleus.append(bleu)
+    if detail:
+        bins = np.arange(0, 1, 0.01) # fixed bin size
+        plt.xlim([min(bleus), max(bleus)])
+        plt.hist(bleus, bins=bins, alpha=0.5)
+        plt.show()
+        plt.savefig('bleu.png')
+    return averagebleu/len(data)
+
+def competition_metric(data, model, english, bash, device, detail):
+    average_score = 0
+    scores=[]
+    for example in data:
+        ob = json.loads(example)
+        src = ob["English"]
+        trg = ob["Bash"]
+        prediction = translate_sentence(model, src, english, bash, device, max_length=50)
+        prediction = prediction[:-1]  # remove <eos> token
+        prediction=' '.join(prediction)
+        predicted_confidence = 1.0
+        metric_val = max(metric_utils.compute_metric(prediction, predicted_confidence, trg), 0)
+        if detail:
+            print(metric_val)
+            print(prediction)
+            print(trg)
+        average_score = average_score + metric_val
+        scores.append(metric_val)
+    if detail:
+        bins = np.arange(-1, 1, 0.1) # fixed bin size
+        plt.xlim([min(scores), max(scores)])
+        plt.hist(scores, bins=bins, alpha=0.5)
+        plt.show()
+        plt.savefig('score.png')
+    return average_score/len(data)

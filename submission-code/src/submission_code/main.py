@@ -16,13 +16,12 @@ def tokenize_bash(text):
 
 def predict(invocations, result_cnt=5):
 
-
     english = Field(tokenize=tokenize_eng, lower=True, init_token="<sos>", eos_token="<eos>")
     bash = Field(tokenize=tokenize_bash, lower=True, init_token="<sos>", eos_token="<eos>")
     fields = {"English": ("eng", english), "Bash": ("bash", bash)}
     train_data, test_data = TabularDataset.splits(
-        path="", train="/tmp/pycharm_project_63/submission-code/src/submission_code/train.json",
-        test="/tmp/pycharm_project_63/submission-code/src/submission_code/test.json", format="json",
+        path="", train="/tmp/pycharm_project_78/submission-code/src/submission_code/train.json",
+        test="/tmp/pycharm_project_78/submission-code/src/submission_code/test.json", format="json",
         fields=fields
     )
     english.build_vocab(train_data, max_size=10000, min_freq=2)
@@ -64,7 +63,7 @@ def predict(invocations, result_cnt=5):
 
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     if load_model:
-        load_checkpoint(torch.load("/tmp/pycharm_project_63/submission-code/src/my_checkpoint.pth.tar", map_location='cpu'), model, optimizer)
+        load_checkpoint(torch.load("/tmp/pycharm_project_78/submission-code/src/my_checkpoint.pth.tar", map_location='cpu'), model, optimizer)
 
 
     """

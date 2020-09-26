@@ -4,12 +4,12 @@ import torch.optim as optim
 import wandb
 from torch.utils.tensorboard import SummaryWriter
 from torchtext.data import Field, BucketIterator, TabularDataset
-from Transformer import Transformer
-from bashlint.data_tools import bash_tokenizer
-from nlp_tools import tokenizer
-from helper import translate_sentence, save_checkpoint, load_checkpoint, competition_metric, bleu
+from model.Transformer import Transformer
+from nl2bash.bashlint.data_tools import bash_tokenizer
+from nl2bash.nlp_tools import tokenizer
+from model.helper import translate_sentence, save_checkpoint, load_checkpoint, competition_metric, bleu
 
-wandb.init(project="nl2bash_transformer")
+wandb.init(project="magnum")
 config = wandb.config
 
 def tokenize_eng(text):
@@ -25,7 +25,7 @@ bash = Field(tokenize=tokenize_bash, lower=True, init_token="<sos>", eos_token="
 fields = {"English": ("eng", english), "Bash": ("bash", bash)}
 
 train_data, test_data = TabularDataset.splits(
-    path="", train="src/submission_code/train.json", test="src/submission_code/test.json", format="json", fields=fields
+    path="", train="/tmp/pycharm_project_78/submission-code/src/submission_code/train.json", test="/tmp/pycharm_project_78/submission-code/src/submission_code/test.json", format="json", fields=fields
 )
 english.build_vocab(train_data, max_size=10000, min_freq=2)
 bash.build_vocab(train_data, max_size=10000, min_freq=2)
@@ -37,7 +37,7 @@ load_model = False
 save_model = True
 
 # Training hyperparameters
-num_epochs = 200
+num_epochs = 1
 learning_rate = 1e-4
 batch_size = 128
 
@@ -118,7 +118,7 @@ for epoch in range(num_epochs):
     if epoch > 0 and epoch % config.log_interval == 0:
         # score = my_metric(test_data, model, english, bash, device, True)
         bleu_score = bleu(test_data, model, english, bash, device, False)
-        with open("src/submission_code/train.json") as f:
+        with open("/tmp/pycharm_project_78/submission-code/src/submission_code/test.json") as f:
             test_data = f.readlines()
         # you may also want to remove whitespace characters like `\n` at the end of each line
         test_data = [x.strip() for x in test_data]
