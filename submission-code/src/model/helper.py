@@ -42,7 +42,7 @@ def translate_sentence(model, sentence, english, bash, device, max_length=30):
 
 
 
-def save_checkpoint(state, filename="my_checkpoint.pth.tar"):
+def save_checkpoint(state, filename="100_epoch_my_checkpoint.pth.tar"):
     print("=> Saving checkpoint")
     path=os.path.join("/tmp/pycharm_project_78/submission-code/src/", filename)
     torch.save(state, path)

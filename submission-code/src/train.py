@@ -37,7 +37,7 @@ load_model = False
 save_model = True
 
 # Training hyperparameters
-num_epochs = 200
+num_epochs = 100
 learning_rate = 1e-4
 batch_size = 128
 
@@ -55,7 +55,7 @@ dropout = 0.10
 max_len = 100
 forward_expansion = 2048
 src_pad_idx = english.vocab.stoi["<pad>"]
-log_interval = 30
+log_interval = 20
 
 config.embedding_size = embedding_size
 config.num_encoder_layers = num_encoder_layers
