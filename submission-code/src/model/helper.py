@@ -6,6 +6,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from nl2bash.metric import metric_utils
 import json
+from pathlib import Path
 
 smoothing = nltk.translate.bleu_score.SmoothingFunction()
 
@@ -44,7 +45,9 @@ def translate_sentence(model, sentence, english, bash, device, max_length=30):
 
 def save_checkpoint(state, filename="100_epoch_my_checkpoint.pth.tar"):
     print("=> Saving checkpoint")
-    path=os.path.join("/tmp/pycharm_project_78/submission-code/src/", filename)
+    # print(os.path.dirname(os.path.realpath(__file__)))
+    path=os.path.join(Path('./').parent, 'submission_code/'+filename)
+    # print(path)
     torch.save(state, path)
 
 

@@ -15,7 +15,6 @@ config = wandb.config
 def tokenize_eng(text):
     return tokenizer.ner_tokenizer(text)[0]
 
-
 def tokenize_bash(text):
     return bash_tokenizer(text)
 
@@ -25,7 +24,7 @@ bash = Field(tokenize=tokenize_bash, lower=True, init_token="<sos>", eos_token="
 fields = {"English": ("eng", english), "Bash": ("bash", bash)}
 
 train_data, test_data = TabularDataset.splits(
-    path="", train="/tmp/pycharm_project_78/submission-code/src/submission_code/train.json", test="/tmp/pycharm_project_78/submission-code/src/submission_code/test.json", format="json", fields=fields
+    path="", train="submission_code/train.json", test="submission_code/test.json", format="json", fields=fields
 )
 english.build_vocab(train_data, max_size=10000, min_freq=2)
 bash.build_vocab(train_data, max_size=10000, min_freq=2)
@@ -118,7 +117,7 @@ for epoch in range(num_epochs):
     if epoch > 0 and epoch % config.log_interval == 0:
         # score = my_metric(test_data, model, english, bash, device, True)
         bleu_score = bleu(test_data, model, english, bash, device, False)
-        with open("/tmp/pycharm_project_78/submission-code/src/submission_code/test.json") as f:
+        with open("submission_code/test.json") as f:
             td = f.readlines()
         # you may also want to remove whitespace characters like `\n` at the end of each line
         td = [x.strip() for x in td]

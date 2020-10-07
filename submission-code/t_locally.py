@@ -98,8 +98,8 @@ def main(submission_image, annotation_filepath, params_filepath, grammar_filepat
 
         submission_proc.communicate()
 
-    except Exception as err:
-        print(err)
+    # except Exception as err:
+    #     print(err)
 
     finally:
         kill_docker_container(container_name)

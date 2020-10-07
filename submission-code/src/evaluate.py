@@ -9,6 +9,7 @@ from utils.metric_utils import compute_metric
 from utils.dataset import Nlc2CmdDS
 from utils.dataloaders import Nlc2CmdDL
 
+from torchtext.data import Field, TabularDataset
 
 def get_parser():
     parser = argparse.ArgumentParser()
@@ -57,9 +58,16 @@ def get_predictions(nlc2cmd_dl):
     i = 0
     ground_truths = []
     predicted_cmds, predicted_confds = [], []
-    
+
+    model, english, bash, device = predictor.load_model()
+
     for invocations, cmds in nlc2cmd_dl:
-        batch_predicted_cmds, batch_predicted_confd = predictor.predict(invocations, result_cnt=result_cnt)
+        batch_predicted_cmds, batch_predicted_confd = predictor.predict(invocations,
+                                                                        model,
+                                                                        english,
+                                                                        bash,
+                                                                        device,
+                                                                        result_cnt=result_cnt)
         validate_predictions(batch_predicted_cmds, batch_predicted_confd, len(invocations), result_cnt)
 
         ground_truths.extend(cmds)

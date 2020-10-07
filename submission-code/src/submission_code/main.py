@@ -6,6 +6,7 @@ from torchtext.data import Field, TabularDataset
 from nl2bash.bashlint.data_tools import bash_tokenizer
 from nl2bash.nlp_tools import tokenizer
 from model.Transformer import Transformer
+import os
 
 def tokenize_eng(text):
     return tokenizer.ner_tokenizer(text)[0]
@@ -14,16 +15,19 @@ def tokenize_eng(text):
 def tokenize_bash(text):
     return bash_tokenizer(text)
 
-def predict(invocations, result_cnt=5):
-
+def load_model(train_file='submission_code/train.json',
+               test_file='submission_code/test.json',
+               model_file='submission_code/100_epoch_my_checkpoint.pth.tar'):
     english = Field(tokenize=tokenize_eng, lower=True, init_token="<sos>", eos_token="<eos>")
     bash = Field(tokenize=tokenize_bash, lower=True, init_token="<sos>", eos_token="<eos>")
     fields = {"English": ("eng", english), "Bash": ("bash", bash)}
+
     train_data, test_data = TabularDataset.splits(
-        path="", train="src/submission_code/train.json",
-        test="src/submission_code/test.json", format="json",
+        path="", train=train_file,
+        test=test_file, format="json",
         fields=fields
     )
+
     english.build_vocab(train_data, max_size=10000, min_freq=2)
     bash.build_vocab(train_data, max_size=10000, min_freq=2)
 
@@ -62,8 +66,62 @@ def predict(invocations, result_cnt=5):
     ).to(device)
 
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-    if load_model:
-        load_checkpoint(torch.load("src/my_checkpoint.pth.tar", map_location='cpu'), model, optimizer)
+    load_checkpoint(torch.load(model_file, map_location='cpu'), model, optimizer)
+    return model, english, bash, device
+
+
+def predict(invocations,model, english, bash, device, result_cnt=5):
+
+    # english = Field(tokenize=tokenize_eng, lower=True, init_token="<sos>", eos_token="<eos>")
+    # bash = Field(tokenize=tokenize_bash, lower=True, init_token="<sos>", eos_token="<eos>")
+    # fields = {"English": ("eng", english), "Bash": ("bash", bash)}
+    #
+    # train_data, test_data = TabularDataset.splits(
+    #     path="", train="submission_code/train.json",
+    #     test="submission_code/test.json", format="json",
+    #     fields=fields
+    # )
+    #
+    # english.build_vocab(train_data, max_size=10000, min_freq=2)
+    # bash.build_vocab(train_data, max_size=10000, min_freq=2)
+    #
+    # # We're ready to define everything we need for training our Seq2Seq model
+    # device = torch.device("cpu")
+    # # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # load_model = True
+    # save_model = False
+    #
+    # learning_rate = 1e-4
+    #
+    # # Model hyperparameters
+    # src_vocab_size = len(english.vocab)
+    # trg_vocab_size = len(bash.vocab)
+    # embedding_size = 256
+    # num_heads = 8
+    # num_encoder_layers = 8
+    # num_decoder_layers = 8
+    # dropout = 0.10
+    # max_len = 100
+    # forward_expansion = 2048
+    # src_pad_idx = english.vocab.stoi["<pad>"]
+    #
+    # model = Transformer(
+    #     embedding_size,
+    #     src_vocab_size,
+    #     trg_vocab_size,
+    #     src_pad_idx,
+    #     num_heads,
+    #     num_encoder_layers,
+    #     num_decoder_layers,
+    #     forward_expansion,
+    #     dropout,
+    #     max_len,
+    #     device,
+    # ).to(device)
+    #
+    # optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+    # if load_model:
+    #     load_checkpoint(torch.load("submission_code/100_epoch_my_checkpoint.pth.tar", map_location='cpu'), model, optimizer)
 
 
     """
