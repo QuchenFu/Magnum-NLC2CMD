@@ -1,3 +1,7 @@
+# This part of the code was adapted from the following open source code:
+# https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/more_advanced/seq2seq_transformer/seq2seq_transformer.py
+
+
 import torch.nn as nn
 import torch
 class Transformer(nn.Module):

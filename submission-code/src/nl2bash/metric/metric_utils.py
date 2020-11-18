@@ -159,8 +159,10 @@ def compute_metric(predicted_cmd, predicted_confidence, ground_truth_cmd):
     ground_truth_utilities, predicted_utilities = pad_arrays(ground_truth_utilities, predicted_utilities)
 
     score = []
-    u1 = 1.0
-    u2 = 1.0
+    score_flag=[]
+    score_util=[]
+    u1 = 1
+    u2 = 1
 
     for ground_truth_utility, predicted_utility in zip(ground_truth_utilities, predicted_utilities):
         utility_score = get_utility_score(ground_truth_utility, predicted_utility)
@@ -172,6 +174,9 @@ def compute_metric(predicted_cmd, predicted_confidence, ground_truth_cmd):
             (1 - utility_score)
         )
         score.append(prediction_score)
-
+        score_util.append(utility_score)
+        score_flag.append(flag_score)
     score_mean = 0.0 if len(score) == 0 else np.mean(score)
-    return score_mean
+    score_flag_mean=0.0 if len(score_flag) == 0 else np.mean(score_flag)
+    score_util_mean = 0.0 if len(score_util) == 0 else np.mean(score_util)
+    return score_mean, score_flag_mean, score_util_mean

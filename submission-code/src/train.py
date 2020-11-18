@@ -1,3 +1,7 @@
+# This part of the code was adapted from the following open source code:
+# https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/more_advanced/seq2seq_transformer/seq2seq_transformer.py
+
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -8,6 +12,8 @@ from model.Transformer import Transformer
 from nl2bash.bashlint.data_tools import bash_tokenizer
 from nl2bash.nlp_tools import tokenizer
 from model.helper import translate_sentence, save_checkpoint, load_checkpoint, competition_metric, bleu
+
+
 
 wandb.init(project="magnum")
 config = wandb.config
@@ -32,12 +38,13 @@ bash.build_vocab(train_data, max_size=10000, min_freq=2)
 
 
 # We're ready to define everything we need for training our Seq2Seq model
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+torch.cuda.set_device(1)
 load_model = False
 save_model = True
 
 # Training hyperparameters
-num_epochs = 100
+num_epochs = 201
 learning_rate = 1e-4
 batch_size = 128
 
@@ -49,10 +56,10 @@ src_vocab_size = len(english.vocab)
 trg_vocab_size = len(bash.vocab)
 embedding_size = 256
 num_heads = 8
-num_encoder_layers = 8
-num_decoder_layers = 8
+num_encoder_layers = 10
+num_decoder_layers = 10
 dropout = 0.10
-max_len = 100
+max_len = 70
 forward_expansion = 2048
 src_pad_idx = english.vocab.stoi["<pad>"]
 log_interval = 20
@@ -84,7 +91,11 @@ model = Transformer(
     dropout,
     max_len,
     device,
-).to(device)
+)
+# if torch.cuda.device_count() > 1:
+#   print("Let's use", torch.cuda.device_count(), "GPUs!")
+#   model = nn.DataParallel(model)
+model.to(device)
 
 wandb.watch(model)
 
@@ -102,12 +113,12 @@ sentence = "Add \"prefix_\" to every non-blank line in \"a.txt\""
 for epoch in range(num_epochs):
     print(f"[Epoch {epoch} / {num_epochs}]")
 
-    if save_model:
+    if save_model and epoch > 0 and epoch % config.log_interval == 0:
         checkpoint = {
             "state_dict": model.state_dict(),
             "optimizer": optimizer.state_dict(),
         }
-        save_checkpoint(checkpoint)
+        save_checkpoint(checkpoint, epoch)
 
     model.eval()
     translated_sentence = translate_sentence(
@@ -115,17 +126,17 @@ for epoch in range(num_epochs):
     )
 
     print(f"Translated example sentence: \n {translated_sentence}")
-    if epoch > 0 and epoch % config.log_interval == 0:
+    if epoch > 50 and epoch % config.log_interval == 0 :
         # score = my_metric(test_data, model, english, bash, device, True)
-        bleu_score = bleu(test_data, model, english, bash, device, False)
+        # bleu_score = bleu(test_data, model, english, bash, device, False)
         with open("/tmp/pycharm_project_78/submission-code/src/submission_code/test.json") as f:
             td = f.readlines()
         # you may also want to remove whitespace characters like `\n` at the end of each line
         td = [x.strip() for x in td]
         real_score = competition_metric(td, model, english, bash, device, False)
         wandb.log({"real_score": real_score})
-        wandb.log({"bleu_score": bleu_score})
-        print(bleu_score)
+        # wandb.log({"bleu_score": bleu_score})
+        # print(bleu_score)
         print(real_score)
     model.train()
     losses = []

@@ -42,9 +42,9 @@ def translate_sentence(model, sentence, english, bash, device, max_length=30):
 
 
 
-def save_checkpoint(state, filename="100_epoch_my_checkpoint.pth.tar"):
+def save_checkpoint(state, epoch, filename="_all_data_cmd10_batch200_max_len70_10layer.tar"):
     print("=> Saving checkpoint")
-    path=os.path.join("/tmp/pycharm_project_78/submission-code/src/", filename)
+    path=os.path.join("/tmp/pycharm_project_78/submission-code/src/", str(epoch)+filename)
     torch.save(state, path)
 
 
@@ -82,6 +82,8 @@ def bleu(data, model, english, bash, device, detail):
 def competition_metric(data, model, english, bash, device, detail):
     average_score = 0
     scores=[]
+    flag_score=[]
+    util_score=[]
     for example in data:
         ob = json.loads(example)
         src = ob["English"]
@@ -90,17 +92,32 @@ def competition_metric(data, model, english, bash, device, detail):
         prediction = prediction[:-1]  # remove <eos> token
         prediction=' '.join(prediction)
         predicted_confidence = 1.0
-        metric_val = max(metric_utils.compute_metric(prediction, predicted_confidence, trg), 0)
+        metric_val, flag_val, util_val = metric_utils.compute_metric(prediction, predicted_confidence, trg)
+
         if detail:
             print(metric_val)
             print(prediction)
             print(trg)
         average_score = average_score + metric_val
         scores.append(metric_val)
+        flag_score.append(flag_val)
+        util_score.append(util_val)
     if detail:
-        bins = np.arange(-1, 1, 0.1) # fixed bin size
-        plt.xlim([min(scores), max(scores)])
+        bins = np.arange(-1, 1.1, 0.0999) # fixed bin size
+        plt.xlim([min(scores), max(scores)+0.1])
         plt.hist(scores, bins=bins, alpha=0.5)
         plt.show()
         plt.savefig('score.png')
-    return average_score/len(data)
+    if detail:
+        bins = np.arange(-2, 1.1, 0.0999) # fixed bin size
+        plt.xlim([min(flag_score), max(flag_score)+0.1])
+        plt.hist(flag_score, bins=bins, alpha=0.5)
+        plt.show()
+        plt.savefig('flag_score.png')
+    if detail:
+        bins = np.arange(-3, 1.1, 0.0999) # fixed bin size
+        plt.xlim([min(util_score), max(util_score)+0.1])
+        plt.hist(util_score, bins=bins, alpha=0.5)
+        plt.show()
+        plt.savefig('util_score.png')
+    return average_score/len(data), flag_score, util_score, scores
