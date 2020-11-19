@@ -10,15 +10,15 @@ overwrite: False
 data:
     corpus_1:
         path_src: invocations_proccess.txt
-        path_tgt: cmds_proccess_temp.txt
+        path_tgt: cmds_proccess.txt
     valid:
         path_src: invocations_proccess.txt
-        path_tgt: cmds_proccess_temp.txt
+        path_tgt: cmds_proccess.txt
 
 # General opts
 save_model: run/model
 save_checkpoint_steps: 100
-keep_checkpoint: 10
+keep_checkpoint: 5
 seed: 3435
 train_steps: 2100
 valid_steps: 1000

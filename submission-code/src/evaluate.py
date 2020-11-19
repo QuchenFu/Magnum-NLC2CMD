@@ -22,7 +22,7 @@ def get_parser():
     parser.add_argument('--annotation_filepath', type=str, required=True)
     parser.add_argument('--params_filepath', type=str, required=True)
     parser.add_argument('--output_folderpath', type=str, required=True)
-    parser.add_argument('--mode', type=str, required=False, default='eval')
+    parser.add_argument('--mode', type=str, required=False, default='energy' ) #
 
     return parser
 
