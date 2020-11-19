@@ -21,6 +21,8 @@ model: too big to upload
 run/model_step_2000.pt
 
 layer
+argument
+flag order
 wordcount min
 epoch
 beam search
@@ -34,3 +36,4 @@ train evalute
 reference: 
 https://opennmt.net/OpenNMT-py/onmt.translation.html
 https://github.com/OpenNMT/OpenNMT-py/issues/1760
+https://opennmt.net/OpenNMT/translation/inference/
