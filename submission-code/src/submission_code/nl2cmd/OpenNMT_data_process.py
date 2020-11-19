@@ -1,10 +1,9 @@
-from bashlint.data_tools import bash_tokenizer
-from nl2bash.nlp_tools import tokenizer
+from nl2bash.bashlint.data_tools import bash_tokenizer
+from nl2bash.nlp_tools2 import tokenizer
 
 
 def tokenize_eng(text):
     return tokenizer.ner_tokenizer(text)[0]
-
 
 def tokenize_bash(text):
     return bash_tokenizer(text)
@@ -30,7 +29,6 @@ for nl in english_txt:
 
 outF = open("/tmp/pycharm_project_78/submission-code/src/submission_code/nl2cmd/cmds_proccess.txt", "w")
 for line in processed_cmd:
-    print(line)
     outF.write(line)
     outF.write("\n")
 outF.close()
@@ -40,3 +38,5 @@ for line in processed_nl:
     outF.write(line)
     outF.write("\n")
 outF.close()
+
+print("done")
