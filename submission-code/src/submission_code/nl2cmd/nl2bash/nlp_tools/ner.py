@@ -9,7 +9,7 @@ from __future__ import print_function
 import collections
 import re
 
-from nl2bash.nlp_tools import constants
+from submission_code.nl2cmd.nl2bash.nlp_tools import constants
 
 def decorate_boundaries(r):
     """

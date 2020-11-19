@@ -9,7 +9,7 @@ translator = build_translator(opt, report_score=False)
 english_txt = open("/tmp/pycharm_project_240/nl2cmd/invocations_proccess.txt", encoding="utf8").read().split("\n")
 bash_txt = open("/tmp/pycharm_project_240/nl2cmd/cmds_proccess.txt", encoding="utf8").read().split("\n")
 scores=[]
-for i in range(1000):
+for i in range(100):
     sentence=english_txt[i]
     trg=bash_txt[i]
     translated = translator.translate([sentence], batch_size=1)

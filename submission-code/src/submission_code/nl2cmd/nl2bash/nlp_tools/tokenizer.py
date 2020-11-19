@@ -13,8 +13,8 @@ import re, sys
 if sys.version_info > (3, 0):
     from six.moves import xrange
 
-from nl2bash.nlp_tools import constants, ner
-from nl2bash.nlp_tools.spellcheck import spell_check as spc
+from submission_code.nl2cmd.nl2bash.nlp_tools import constants, ner
+from submission_code.nl2cmd.nl2bash.nlp_tools.spellcheck import spell_check as spc
 
 # from nltk.stem.wordnet import WordNetLemmatizer
 # lmtzr = WordNetLemmatizer()
