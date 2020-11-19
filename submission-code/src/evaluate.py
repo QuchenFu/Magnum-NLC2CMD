@@ -18,7 +18,7 @@ from utils.dataloaders import Nlc2CmdDL
 
 def get_parser():
     parser = argparse.ArgumentParser()
-
+    
     parser.add_argument('--annotation_filepath', type=str, required=True)
     parser.add_argument('--params_filepath', type=str, required=True)
     parser.add_argument('--output_folderpath', type=str, required=True)
@@ -40,6 +40,7 @@ def get_params(params_filepath):
 
 
 def validate_predictions(predicted_cmds, predicted_confds, n_batch, result_cnt):
+
     assert len(predicted_cmds) == n_batch, \
         f'{len(predicted_cmds)} commands predicted for {n_batch} invocations'
 
@@ -52,17 +53,18 @@ def validate_predictions(predicted_cmds, predicted_confds, n_batch, result_cnt):
 
         assert 1 <= len(predicted_confds[i]) <= result_cnt, \
             f'{len(predicted_confds[i])} confidences predicted for an invocations. Expected between 1 and {result_cnt}'
-
+        
         assert not (False in [0.0 <= x <= 1.0 for x in predicted_confds[i]]), \
             f'Confidence value beyond the allowed range of [0.0, 1.0] found in predictions'
 
 
 def get_predictions(nlc2cmd_dl):
+
     result_cnt = 5
     i = 0
     ground_truths = []
     predicted_cmds, predicted_confds = [], []
-
+    
     for invocations, cmds in nlc2cmd_dl:
         batch_predicted_cmds, batch_predicted_confd = predictor.predict(invocations, result_cnt=result_cnt)
         validate_predictions(batch_predicted_cmds, batch_predicted_confd, len(invocations), result_cnt)
@@ -80,6 +82,7 @@ def get_predictions(nlc2cmd_dl):
 
 
 def get_score(prediction_scores):
+
     score = -1.0
     if len(prediction_scores) == 0:
         return score
@@ -95,14 +98,15 @@ def get_score(prediction_scores):
 
 
 def compute_score(ground_truths, predicted_cmds, predicted_confds, metric_params):
+    
     prediction_scores = []
 
     for grnd_truth_cmd in ground_truths:
         for i, predicted_cmd in enumerate(predicted_cmds):
-
+            
             if predicted_cmd is None or len(predicted_cmd) == 0:
                 continue
-
+            
             predicted_confidence = predicted_confds[i]
             pair_score = compute_metric(predicted_cmd, predicted_confidence, grnd_truth_cmd, metric_params)
             prediction_scores.append(pair_score)
@@ -118,6 +122,7 @@ def compute_score(ground_truths, predicted_cmds, predicted_confds, metric_params
 
 
 def evaluate_model(annotation_filepath, params_filepath):
+
     try:
         params = get_params(params_filepath)
 
@@ -159,6 +164,7 @@ def evaluate_model(annotation_filepath, params_filepath):
 
 
 def compute_energyusage(annotation_filepath):
+
     try:
         tmplogdir = tempfile.mkdtemp()
         print(f'Logging energy evaluation in directory: {tmplogdir}')
@@ -183,7 +189,7 @@ def compute_energyusage(annotation_filepath):
             'status': 'success',
             'energy_mwh': energy_mwatts
         }
-
+    
     except Exception as err:
         result = {
             'status': 'error',
@@ -199,7 +205,7 @@ def compute_energyusage(annotation_filepath):
 
 
 if __name__ == '__main__':
-
+    
     parser = get_parser()
     args = parser.parse_args()
 
