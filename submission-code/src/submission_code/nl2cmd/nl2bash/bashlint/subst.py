@@ -4,11 +4,11 @@ from __future__ import print_function
 
 import copy
 
-from bashlint import bast, flags, tokenizer, errors
+from nl2bash.bashlint import bast, flags, tokenizer, errors
 
 def _recursiveparse(parserobj, base, sindex, tokenizerargs=None):
     # TODO: fix this hack that prevents mutual import
-    from bashlint import bparser
+    from nl2bash.bashlint import bparser
 
     tok = parserobj.tok
 

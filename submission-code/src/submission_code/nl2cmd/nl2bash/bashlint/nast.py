@@ -4,7 +4,7 @@ Node Classes for the Normalized Bash AST.
 
 import collections
 
-from bashlint import bash
+from nl2bash.bashlint import bash
 
 _H_NO_EXPAND = '__SP__H_NO_EXPAND'
 _V_NO_EXPAND = '__SP__V_NO_EXPAND'

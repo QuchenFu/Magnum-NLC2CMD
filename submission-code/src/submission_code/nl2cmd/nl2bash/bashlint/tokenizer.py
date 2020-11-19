@@ -1,6 +1,6 @@
 import re, collections, enum
 
-from bashlint import flags, shutils, butils, errors, heredoc, state
+from nl2bash.bashlint import flags, shutils, butils, errors, heredoc, state
 
 sh_syntaxtab = collections.defaultdict(set)
 

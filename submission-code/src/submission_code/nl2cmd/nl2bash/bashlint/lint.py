@@ -30,13 +30,13 @@ if sys.version_info > (3, 0):
     from six.moves import xrange
 
 # bash grammar
-from bashlint.grammar import *
+from nl2bash.bashlint.grammar import *
 
 # bashlex stuff
-from bashlint import bast, errors, tokenizer, bparser
-from bashlint.nast import *
+from nl2bash.bashlint import bast, errors, tokenizer, bparser
+from nl2bash.bashlint.nast import *
 
-from nlp_tools import constants
+from nl2bash.nlp_tools import constants
 
 
 def correct_errors_and_normalize_surface(cmd):

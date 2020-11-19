@@ -55,6 +55,7 @@ def predict(invocations, result_cnt=5):
         new_inv = ' '.join(new_inv)
         translated = translator.translate([new_inv], batch_size=1)
         temp = translated[1][0][0]
+
         top_commands = [temp] * 5
         print(top_commands)
         # For testing evalAI docker push, just fill top command - just need to check

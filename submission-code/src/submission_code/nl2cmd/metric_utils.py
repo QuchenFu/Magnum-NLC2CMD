@@ -9,8 +9,8 @@ from __future__ import print_function
 import collections
 import numpy as np
 
-from bashlint import data_tools, nast
-from bashlint.data_tools import bash_parser
+from nl2bash.bashlint import data_tools, nast
+from nl2bash.bashlint.data_tools import bash_parser
 
 
 def get_utilities(ast):

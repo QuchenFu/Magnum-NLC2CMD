@@ -12,7 +12,7 @@ import sys
 if sys.version_info > (3, 0):
     from six.moves import xrange
 
-from bashlint import bash, lint, nast
+from nl2bash.bashlint import bash, lint, nast
 
 flag_suffix = '<FLAG_SUFFIX>'
 
@@ -43,8 +43,8 @@ def get_utilities(ast):
         return get_utilities_fun(ast)
 
 
-def bash_tokenizer(cmd, recover_quotation=True, loose_constraints=True,
-        ignore_flag_order=True, arg_type_only=True, keep_common_args=False, with_flag_head=False,
+def bash_tokenizer(cmd, recover_quotation=True, loose_constraints=False,
+        ignore_flag_order=False, arg_type_only=False, keep_common_args=False, with_flag_head=False,
         with_flag_argtype=False, with_prefix=False, verbose=False):
     """
     Tokenize a bash command.

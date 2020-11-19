@@ -1,6 +1,6 @@
 import os, copy
 
-from bashlint import yacc, tokenizer, state, bast, subst, flags, errors, heredoc
+from nl2bash.bashlint import yacc, tokenizer, state, bast, subst, flags, errors, heredoc
 
 def _partsspan(parts):
     return parts[0].pos[0], parts[-1].pos[1]
