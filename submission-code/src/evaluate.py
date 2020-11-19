@@ -184,7 +184,6 @@ def compute_energyusage(annotation_filepath):
         stats = compute_tracker.read_latest_stats(tmplogdir)
         energy_watts = stats.get('rapl_estimated_attributable_power_draw', 0.0)
         energy_mwatts = (energy_watts * 1000.0) / n
-
         result = {
             'status': 'success',
             'energy_mwh': energy_mwatts
@@ -215,6 +214,5 @@ if __name__ == '__main__':
         result = evaluate_model(args.annotation_filepath, args.params_filepath)
     elif args.mode == 'energy':
         result = compute_energyusage(args.annotation_filepath)
-
     with open(os.path.join(args.output_folderpath, 'result.json'), 'w') as f:
         json.dump(result, f)
