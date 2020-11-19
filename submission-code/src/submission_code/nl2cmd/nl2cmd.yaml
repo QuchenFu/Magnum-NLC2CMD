@@ -10,10 +10,10 @@ overwrite: False
 data:
     corpus_1:
         path_src: invocations_proccess.txt
-        path_tgt: cmds_proccess_temp.txt
+        path_tgt: cmds_proccess.txt
     valid:
         path_src: invocations_proccess.txt
-        path_tgt: cmds_proccess_temp.txt
+        path_tgt: cmds_proccess.txt
 
 # General opts
 save_model: run/model
