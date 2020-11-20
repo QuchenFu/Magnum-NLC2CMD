@@ -1,4 +1,4 @@
-onmt_build_vocab -config nl2cmd.yaml -n_sample 10347 --src_vocab_threshold 2 --tgt_vocab_threshold 2
+onmt_build_vocab -config nl2cmd.yaml -n_sample 8277 --src_vocab_threshold 2 --tgt_vocab_threshold 2
 
 onmt_train -config nl2cmd.yaml --tgt_words_min_frequency 2 --src_words_min_frequency 2
 

@@ -9,19 +9,19 @@ overwrite: False
 # Corpus opts:
 data:
     corpus_1:
-        path_src: invocations_proccess.txt
-        path_tgt: cmds_proccess.txt
+        path_src: data/invocations_proccess_train.txt
+        path_tgt: data/cmds_proccess_train.txt
     valid:
-        path_src: invocations_proccess.txt
-        path_tgt: cmds_proccess.txt
+        path_src: data/invocations_proccess_test.txt
+        path_tgt: data/cmds_proccess_test.txt
 
 # General opts
 save_model: run/model
 save_checkpoint_steps: 100
-keep_checkpoint: 10
+keep_checkpoint: 15
 seed: 3435
-train_steps: 2100
-valid_steps: 1000
+train_steps: 2300
+valid_steps: 100
 warmup_steps: 8000
 report_every: 100
 
@@ -41,7 +41,7 @@ decay_method: noam
 learning_rate: 2.0
 max_grad_norm: 0.0
 
-batch_size: 8192
+batch_size: 14000
 batch_type: tokens
 normalization: tokens
 dropout: 0.1

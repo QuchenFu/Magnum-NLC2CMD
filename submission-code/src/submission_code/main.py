@@ -4,7 +4,7 @@ from argparse import Namespace
 
 import math
 
-opt = Namespace(models=['/tmp/pycharm_project_78/submission-code/src/submission_code/model_step_2000.pt'], n_best=5,
+opt = Namespace(models=['/tmp/pycharm_project_78/submission-code/src/submission_code/nl2cmd/run/model_step_1800.pt'], n_best=5,
                 alpha=0.0, batch_type='sents', beam_size=5,
                 beta=-0.0, block_ngram_repeat=0, coverage_penalty='none', data_type='text', dump_beam='', fp32=True,
                 gpu=-1, ignore_when_blocking=[], length_penalty='none', max_length=100, max_sent_length=None,
@@ -57,10 +57,11 @@ def predict(invocations, result_cnt=5):
         translated = translator.translate([new_inv], batch_size=1)
         for i in range(result_cnt):
             commands[idx][i] = translated[1][0][i]
-            confidences[idx][i] = math.exp(translated[0][0][i].item())
-        confidences[idx][0] = 1.0
+        #     confidences[idx][i] = math.exp(translated[0][0][i].item())/2
+        # confidences[idx][0] = 1.0
+
+
     ################################################################################################
     #                               Participant code block ends                                    #
     ################################################################################################
-    print(confidences)
     return commands, confidences

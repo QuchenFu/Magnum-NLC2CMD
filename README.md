@@ -32,6 +32,8 @@ LSTM
 lr
 energe
 train evalute
+cf as reference may save energy
+batch predict
 
 reference: 
 https://opennmt.net/OpenNMT-py/onmt.translation.html
