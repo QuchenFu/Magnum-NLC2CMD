@@ -1,13 +1,23 @@
 from submission_code.nl2cmd.nl2bash.nlp_tools import tokenizer
 from onmt.translate.translator import build_translator
 from argparse import Namespace
-
+import time
 import math
+import numpy as np
 
-opt = Namespace(models=['/tmp/pycharm_project_78/submission-code/src/submission_code/model_step_2000.pt'], n_best=5,
+opt = Namespace(models=[
+                        'submission_code/nl2cmd/run_ensemble/model_step_3000_1.pt',
+                        # 'submission_code/nl2cmd/run_ensemble/model_step_2000_2.pt',
+                        'submission_code/nl2cmd/run_ensemble/model_step_2000_3.pt',
+                        # 'submission_code/nl2cmd/run_ensemble/model_step_3000_4.pt',
+                        'submission_code/nl2cmd/run_ensemble/model_step_2000_5.pt',
+                        # 'submission_code/nl2cmd/run_ensemble/model_step_2000_6.pt',
+],
+                n_best=5,
+                avg_raw_probs=False,
                 alpha=0.0, batch_type='sents', beam_size=5,
                 beta=-0.0, block_ngram_repeat=0, coverage_penalty='none', data_type='text', dump_beam='', fp32=True,
-                gpu=-1, ignore_when_blocking=[], length_penalty='none', max_length=100, max_sent_length=None,
+                gpu=0, ignore_when_blocking=[], length_penalty='none', max_length=100, max_sent_length=None,
                 min_length=0, output='/dev/null', phrase_table='', random_sampling_temp=1.0, random_sampling_topk=1,
                 ratio=-0.0, replace_unk=False, report_align=False, report_time=False, seed=829, stepwise_penalty=False,
                 tgt=None, verbose=False, tgt_prefix=None)
@@ -51,13 +61,23 @@ def predict(invocations, result_cnt=5):
     ################################################################################################
     #     Participants should add their codes to fill predict `commands` and `confidences` here    #
     ################################################################################################
+    # a = translator
+    # invocations = [' '.join(tokenize_eng(i)) for i in invocations]
+    # translated = translator.translate(invocations, batch_size=n_batch)
+    # commands = [t[:result_cnt] for t in translated[1]]
+    # confidences = [ np.exp( list(map(lambda x:x.item(), t[:result_cnt])) )/2 for t in translated[0]]
+    # for i in range(len(confidences)):
+    #     confidences[i][0] = 1.0
+
+
+
     for idx, inv in enumerate(invocations):
         new_inv = tokenize_eng(inv)
         new_inv = ' '.join(new_inv)
         translated = translator.translate([new_inv], batch_size=1)
         for i in range(result_cnt):
             commands[idx][i] = translated[1][0][i]
-            confidences[idx][i] = math.exp(translated[0][0][i].item())
+            confidences[idx][i] = math.exp(translated[0][0][i].item())/2
         confidences[idx][0] = 1.0
     ################################################################################################
     #                               Participant code block ends                                    #
