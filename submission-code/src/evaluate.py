@@ -5,10 +5,14 @@ import json
 from datetime import datetime
 import tempfile
 import traceback
+import time
+# import experiment_impact_tracker
+# from experiment_impact_tracker import compute_tracker
+# from experiment_impact_tracker.compute_tracker import ImpactTracker
 
-import experiment_impact_tracker
-from experiment_impact_tracker import compute_tracker
-from experiment_impact_tracker.compute_tracker import ImpactTracker
+from submission_code.lib import experiment_impact_tracker
+from submission_code.lib.experiment_impact_tracker import  compute_tracker
+from submission_code.lib.experiment_impact_tracker.compute_tracker import ImpactTracker
 
 from submission_code import main as predictor
 from utils.metric_utils import compute_metric
@@ -22,7 +26,7 @@ def get_parser():
     parser.add_argument('--annotation_filepath', type=str, required=True)
     parser.add_argument('--params_filepath', type=str, required=True)
     parser.add_argument('--output_folderpath', type=str, required=True)
-    parser.add_argument('--mode', type=str, required=False, default='energy' ) #
+    parser.add_argument('--mode', type=str, required=False, default='eval') #eval
 
     return parser
 
@@ -154,6 +158,8 @@ def evaluate_model(annotation_filepath, params_filepath):
             'score': mean_score
         }
 
+
+
     except Exception as err:
         result = {
             'status': 'error',
@@ -188,6 +194,7 @@ def compute_energyusage(annotation_filepath):
             'status': 'success',
             'energy_mwh': energy_mwatts
         }
+        print(result)
     
     except Exception as err:
         result = {
@@ -204,13 +211,14 @@ def compute_energyusage(annotation_filepath):
 
 
 if __name__ == '__main__':
-    
+
     parser = get_parser()
     args = parser.parse_args()
-
+    print(args.mode)
     os.makedirs(args.output_folderpath, exist_ok=True)
-
+    print(args.mode)
     if args.mode == 'eval':
+
         result = evaluate_model(args.annotation_filepath, args.params_filepath)
     elif args.mode == 'energy':
         result = compute_energyusage(args.annotation_filepath)

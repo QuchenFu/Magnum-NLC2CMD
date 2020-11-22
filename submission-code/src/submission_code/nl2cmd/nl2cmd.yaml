@@ -9,27 +9,39 @@ overwrite: False
 # Corpus opts:
 data:
     corpus_1:
-        path_src: invocations_proccess.txt
-        path_tgt: cmds_proccess.txt
+        path_src: data/invocations_proccess_train.txt
+        path_tgt: data/cmds_proccess_train.txt
     valid:
-        path_src: invocations_proccess.txt
-        path_tgt: cmds_proccess.txt
+        path_src: data/invocations_proccess_test.txt
+        path_tgt: data/cmds_proccess_test.txt
 
 # General opts
 save_model: run/model
 save_checkpoint_steps: 100
 keep_checkpoint: 5
-seed: 3435
-train_steps: 2100
+seed: 8629
+train_steps: 2000
 valid_steps: 1000
-warmup_steps: 8000
+warmup_steps: 8000 #3
 report_every: 100
+
+#"""
+#1: ep:3000, rs:3435, ws:10000 bs:14000 --> 817
+#2: ep:2000, rs: 1245, ws: 8000, bs:8000 --> 798
+#3: ep:2000, rs: 6837, ws:8000, bs:8000 --> 822
+#4: ep: 3000, rs: 8374, ws: 12000, bs: 8000 --> 799
+#5: ep:2000, rs: 4028, ws: 10000, bs: 8000 --> 809
+#6: ep:2000, rs:8629, ws:8000, bs:8000 --> 801
+#7: ep:2000, rs:8038, ws:8000, bs:8000，rnn_size(512-->768), layer->8
+#"""
 
 decoder_type: transformer
 encoder_type: transformer
 word_vec_size: 512
-rnn_size: 512
-layers: 6
+#rnn_size: 512
+rnn_size: 768
+#layers: 6
+layers: 8
 transformer_ff: 2048
 heads: 8
 
@@ -41,7 +53,7 @@ decay_method: noam
 learning_rate: 2.0
 max_grad_norm: 0.0
 
-batch_size: 8192
+batch_size: 8000
 batch_type: tokens
 normalization: tokens
 dropout: 0.1
