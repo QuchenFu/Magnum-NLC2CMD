@@ -1,4 +1,4 @@
-# Magnum-NLC2CMD [![Magnum]]
+# Magnum-NLC2CMD [[Magnum]]
 
 <img src="https://media2.giphy.com/media/LkMwAc7wfZfPENTaKJ/giphy.gif" align="right"
      alt="Size Limit logo by Anton Lovchikov" width="150" height="178">
