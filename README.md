@@ -1,7 +1,6 @@
-# Magnum-NLC2CMD
-# Size Limit [![Cult Of Martians][cult-img]][cult]
+# Magnum-NLC2CMD [![Cult Of Martians][cult-img]][cult]
 
-<img src="https://giphy.com/stickers/vanderbiltu-squirrel-vanderbilt-godores-LkMwAc7wfZfPENTaKJ" align="right"
+<img src="https://www.magnum.io/img/magnum.png" align="right"
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
 
 Size Limit is a performance budget tool for JavaScript. It checks every commit
