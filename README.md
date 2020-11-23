@@ -3,30 +3,9 @@
 <img src="https://media2.giphy.com/media/LkMwAc7wfZfPENTaKJ/giphy.gif" align="right"
      alt="Magnum logo" width="160" height="178">
 
-Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in accuracy on the open **[leaderboard]**. 
-
-* **ES modules** and **tree-shaking** support.
-* Add Size Limit to **Travis CI**, **Circle CI**, **GitHub Actions**
-  or another CI system to know if a pull request adds a massive dependency.
-* **Modular** to fit different use cases: big JS applications
-  that use their own bundler or small npm libraries with many files.
-* Can calculate **the time** it would take a browser
-  to download and **execute** your JS. Time is a much more accurate
-  and understandable metric compared to the size in bytes.
-* Calculations include **all dependencies and polyfills**
-  used in your JS.
-
+Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in accuracy on the open **[Leaderboard]**. 
 <p align="center">
-  <img src="./img/example.png" alt="Size Limit CLI" width="738">
-</p>
-
-With **[GitHub action]** Size Limit will post bundle size changes as a comment
-in pull request discussion.
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/andresz1/size-limit-action/master/assets/pr.png"
-  alt="Size Limit comment in pull request about bundle size changes"
-  width="686" height="289">
+<img width="1092" alt="Screen Shot 2020-11-23 at 3 38 13 PM" src="https://user-images.githubusercontent.com/31392274/100018358-f34fa600-2da1-11eb-94c6-b848c774aca9.png">
 </p>
 
 With `--why`, Size Limit can tell you *why* your library is of this size
