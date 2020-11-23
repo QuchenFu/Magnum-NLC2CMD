@@ -34,6 +34,7 @@ energe
 train evalute
 cf as reference may save energy
 batch predict
+inference time
 
 reference: 
 https://opennmt.net/OpenNMT-py/onmt.translation.html
