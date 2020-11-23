@@ -11,4 +11,3 @@ torchvision==0.7.0
 tqdm==4.46.1
 matplotlib==3.2.2
 OpenNMT-py==2.0.0rc2
-# wandb

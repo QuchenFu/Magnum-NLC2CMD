@@ -5,6 +5,7 @@ from nl2bash.nlp_tools2 import tokenizer
 def tokenize_eng(text):
     return tokenizer.ner_tokenizer(text)[0]
 
+
 def tokenize_bash(text):
     return bash_tokenizer(text)
 
