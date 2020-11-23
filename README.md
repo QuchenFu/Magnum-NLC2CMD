@@ -4,7 +4,7 @@
      alt="Magnum logo" width="160" height="178">
 
 Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in accuracy on the open **[Leaderboard]**. 	
-The NLC2CMD Competition challenges you to build an algorithm that can translate an English description (𝑛𝑙𝑐) of a command line task to its corresponding command line syntax (𝑐)
+The NLC2CMD Competition challenges you to build an algorithm that can translate an English description (𝑛𝑙𝑐) of a command line task to its corresponding command line syntax (𝑐). The  [tellina](https://github.com/IBM/clai/tree/master/clai/server/plugins/tellina) model was the previous SOTA which was used as the baseline.
 <p align="left">
 <img width="650" alt="Screen Shot 2020-11-23 at 3 38 13 PM" src="https://user-images.githubusercontent.com/31392274/100018358-f34fa600-2da1-11eb-94c6-b848c774aca9.png">
 </p>
@@ -32,20 +32,8 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 ## How to reproduce
 
 1. Create a virtual environment with python3.6 installed(`virtualenv`).
-2. use `pip3 install -r requirements.txt` to install the two requiremnts files(`submission_code/src/submission_code/requirements.txt`, `submission_code/src/submission_code/requirements.txt`)
-2. If you use the `webpack` plugin, Size Limit will bundle your JS files into
-   a single file. It is important to track dependencies and webpack polyfills.
-   It is also useful for small libraries with many small files and without
-   a bundler.
-3. The `webpack` plugin creates an empty webpack project, adds your library
-   and looks for the bundle size difference.
-4. The `time` plugin compares the current machine performance with that of
-   a low-priced Android devices to calculate the CPU throttling rate.
-5. Then the `time` plugin runs headless Chrome (or desktop Chrome if it’s
-   available) to track the time a browser takes to compile and execute your JS.
-   Note that these measurements depend on available resources and might
-   be unstable. [See here](https://github.com/mbalabash/estimo/issues/5)
-   for more details.
+2. use `pip3 install -r requirements.txt` to install the two requirements files(`submission_code/src/submission_code/requirements.txt`, `submission_code/src/requirements.txt`)
+3. 
 
 
 ## Usage
