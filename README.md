@@ -46,7 +46,7 @@ and show the real cost of all your internal dependencies.
 </p>
 
 [GitHub action]: https://github.com/andresz1/size-limit-action
-[cult-img]:      http://cultofmartians.com/assets/badges/badge.svg
+[cult-img]:      https://www.magnum.io/img/magnum.png
 [cult]:          http://cultofmartians.com/tasks/size-limit-config.html
 
 ## Who Uses Size Limit
