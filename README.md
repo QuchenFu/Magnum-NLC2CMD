@@ -1,4 +1,4 @@
-# Magnum-NLC2CMD [![Cult Of Martians][cult-img]][cult]
+# Magnum-NLC2CMD [![Magnum Research Group][cult-img]][cult]
 
 <img src="https://www.magnum.io/img/magnum.png" align="right"
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
