@@ -30,12 +30,19 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 * tqdm==4.46.1
 * OpenNMT-py==2.0.0rc2
 
-## How to reproduce
+## How it works
 
+### Environment
 1. Create a virtual environment with python3.6 installed(`virtualenv`).
-2. use `pip3 install -r requirements.txt` to install the two requirements files(`submission_code/src/submission_code/requirements.txt`, `submission_code/src/requirements.txt`)
-3. `cd submission_code/src/submission_code/nl2cmd`
-4. run `onmt_train -config nl2cmd.yaml`
+2. use `pip3 install -r requirements.txt` to install the two requirements files
+(`submission_code/src/submission_code/requirements.txt`, `submission_code/src/requirements.txt`)
+
+### Data pre-processing
+
+### Train
+
+1. `cd submission_code/src/submission_code/nl2cmd`
+2. run `onmt_train -config nl2cmd.yaml`
 
 
 
