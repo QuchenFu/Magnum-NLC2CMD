@@ -12,8 +12,21 @@ Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challen
 [leaderboard]: https://eval.ai/web/challenges/challenge-page/674/leaderboard/1831
 ## Requirements
 
-* [experiment-impact-tracker](https://pypi.org/project/experiment-impact-tracker/)
-
+* numpy
+* six
+* nltk
+* experiment-impact-tracker
+* scikit-learn
+* pandas
+* flake8==3.8.3
+* spacy==2.3.0
+* tb-nightly==2.3.0a20200621
+* tensorboard-plugin-wit==1.6.0.post3
+* torch==1.6.0
+* torchtext==0.4.0
+* torchvision==0.7.0
+* tqdm==4.46.1
+* OpenNMT-py==2.0.0rc2
 
 ## How It Works
 
