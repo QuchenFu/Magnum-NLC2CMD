@@ -1,9 +1,9 @@
 # <img src="https://www.magnum.io/img/magnum.png" width="24" height="24"> Magnum-NLC2CMD 
 
-<img src="https://media2.giphy.com/media/LkMwAc7wfZfPENTaKJ/giphy.gif" align="right"
-     alt="Magnum logo" width="160" height="178">
+<img src="https://evalai.s3.amazonaws.com/media/logos/4c055dbb-a30a-4aa1-b86b-33dd76940e14.jpg" align="right"
+     alt="Magnum logo" height="178">
 
-Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in accuracy on the open **[Leaderboard]**. 	
+Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in Accuracy Track on the open **[Leaderboard]**. 	
 The NLC2CMD Competition challenges you to build an algorithm that can translate an English description (𝑛𝑙𝑐) of a command line task to its corresponding command line syntax (𝑐). The  **[tellina]** model was the previous SOTA which was used as the baseline.
 <p align="left">
 <img width="650" alt="Screen Shot 2020-11-23 at 3 38 13 PM" src="https://user-images.githubusercontent.com/31392274/100018358-f34fa600-2da1-11eb-94c6-b848c774aca9.png">
@@ -38,11 +38,14 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 (`submission_code/src/submission_code/requirements.txt`, `submission_code/src/requirements.txt`)
 
 ### Data pre-processing
+1. We have processed data in `submission_code/src/submission_code/nl2cmd/data`,
+You can also download the Original raw data [here]()
+
 
 ### Train
 
 1. `cd submission_code/src/submission_code/nl2cmd`
-2. run `onmt_train -config nl2cmd.yaml`
+2. `onmt_train -config nl2cmd.yaml`
 
 
 
