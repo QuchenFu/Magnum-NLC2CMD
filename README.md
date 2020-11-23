@@ -3,9 +3,7 @@
 <img src="https://media2.giphy.com/media/LkMwAc7wfZfPENTaKJ/giphy.gif" align="right"
      alt="Magnum logo" width="160" height="178">
 
-Size Limit is a performance budget tool for JavaScript. It checks every commit
-on CI, calculates the real cost of your JS for end-users and throws an error
-if the cost exceeds the limit.
+Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in accuracy on the leaderboard. 
 
 * **ES modules** and **tree-shaking** support.
 * Add Size Limit to **Travis CI**, **Circle CI**, **GitHub Actions**
@@ -45,9 +43,7 @@ and show the real cost of all your internal dependencies.
   </a>
 </p>
 
-[GitHub action]: https://github.com/andresz1/size-limit-action
-[Magnum]: 
-[Squirrel-shake]: 
+[NeurIPS 2020 NLC2CMD competition challenge]: http://nlc2cmd.us-east.mybluemix.net/#/
 
 ## Who Uses Size Limit
 
