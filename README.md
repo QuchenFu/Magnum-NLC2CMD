@@ -1,7 +1,7 @@
-# ![Magnum]Magnum-NLC2CMD 
+# <img src="https://www.magnum.io/img/magnum.png" width="20" height="20"> Magnum-NLC2CMD 
 
 <img src="https://media2.giphy.com/media/LkMwAc7wfZfPENTaKJ/giphy.gif" align="right"
-     alt="Size Limit logo by Anton Lovchikov" width="150" height="178">
+     alt="Magnum logo" width="150" height="178">
 
 Size Limit is a performance budget tool for JavaScript. It checks every commit
 on CI, calculates the real cost of your JS for end-users and throws an error
@@ -46,7 +46,7 @@ and show the real cost of all your internal dependencies.
 </p>
 
 [GitHub action]: https://github.com/andresz1/size-limit-action
-[Magnum]: https://www.magnum.io/img/magnum.png
+[Magnum]: 
 [Squirrel-shake]: 
 
 ## Who Uses Size Limit
