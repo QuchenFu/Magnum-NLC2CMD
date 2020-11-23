@@ -16,7 +16,7 @@ data:
         path_tgt: cmds_proccess.txt
 
 # General opts
-save_model: run4/model
+save_model: run4/submission_code
 save_checkpoint_steps: 100
 keep_checkpoint: 10
 seed: 34

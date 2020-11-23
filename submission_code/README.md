@@ -42,7 +42,7 @@ The function definition for the `predict` function is:
 ```python
 def predict(invocations, result_cnt=5):
   """ 
-  Function called by the evaluation script to interface the participants model
+  Function called by the evaluation script to interface the participants submission_code
 
   Args:
     1. invocations : `list (str)` : list of `n_batch` (default 16) natural language invocations

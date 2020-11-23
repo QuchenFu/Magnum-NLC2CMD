@@ -25,7 +25,7 @@ def tokenize_eng(text):
 
 def predict(invocations, result_cnt=5):
     """
-    Function called by the evaluation script to interface the participants model
+    Function called by the evaluation script to interface the participants submission_code
     `predict` function accepts the natural language invocations as input, and returns
     the predicted commands along with confidences as output. For each invocation,
     `result_cnt` number of predicted commands are expected to be returned.

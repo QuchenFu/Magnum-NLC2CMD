@@ -29,11 +29,10 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 * tqdm==4.46.1
 * OpenNMT-py==2.0.0rc2
 
-## How It Works
+## How to reproduce
 
-1. Size Limit contains a CLI tool, 3 plugins (`file`, `webpack`, `time`)
-   and 3 plugin presets for popular use cases (`app`, `big-lib`, `small-lib`).
-   A CLI tool finds plugins in `package.json` and loads the config.
+1. Create a virtual environment with python3.6 installed(`virtualenv`).
+2. use `pip3 install -r requirements.txt` to install the two requiremnts files(`submission_code/src/submission_code/requirements.txt`, `submission_code/src/submission_code/requirements.txt`)
 2. If you use the `webpack` plugin, Size Limit will bundle your JS files into
    a single file. It is important to track dependencies and webpack polyfills.
    It is also useful for small libraries with many small files and without
