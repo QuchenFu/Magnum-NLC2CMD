@@ -1,7 +1,7 @@
-# <img src="https://www.magnum.io/img/magnum.png" width="20" height="20"> Magnum-NLC2CMD 
+# <img src="https://www.magnum.io/img/magnum.png" width="24" height="24"> Magnum-NLC2CMD 
 
 <img src="https://media2.giphy.com/media/LkMwAc7wfZfPENTaKJ/giphy.gif" align="right"
-     alt="Magnum logo" width="150" height="178">
+     alt="Magnum logo" width="160" height="178">
 
 Size Limit is a performance budget tool for JavaScript. It checks every commit
 on CI, calculates the real cost of your JS for end-users and throws an error
