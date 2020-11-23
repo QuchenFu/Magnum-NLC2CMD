@@ -5,21 +5,7 @@
 
 Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in accuracy on the open **[Leaderboard]**. 
 <p align="left">
-<img width="600" alt="Screen Shot 2020-11-23 at 3 38 13 PM" src="https://user-images.githubusercontent.com/31392274/100018358-f34fa600-2da1-11eb-94c6-b848c774aca9.png">
-</p>
-
-With `--why`, Size Limit can tell you *why* your library is of this size
-and show the real cost of all your internal dependencies.
-
-<p align="center">
-  <img src="./img/why.png" alt="Bundle Analyzer example" width="650">
-</p>
-
-<p align="center">
-  <a href="https://evilmartians.com/?utm_source=size-limit">
-    <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
-         alt="Sponsored by Evil Martians" width="236" height="54">
-  </a>
+<img width="700" alt="Screen Shot 2020-11-23 at 3 38 13 PM" src="https://user-images.githubusercontent.com/31392274/100018358-f34fa600-2da1-11eb-94c6-b848c774aca9.png">
 </p>
 
 [NeurIPS 2020 NLC2CMD challenge]: http://nlc2cmd.us-east.mybluemix.net/#/
