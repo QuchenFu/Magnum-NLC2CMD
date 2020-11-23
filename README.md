@@ -1,7 +1,7 @@
 # <img src="https://www.magnum.io/img/magnum.png" width="24" height="24"> Magnum-NLC2CMD 
 
 <img src="https://evalai.s3.amazonaws.com/media/logos/4c055dbb-a30a-4aa1-b86b-33dd76940e14.jpg" align="right"
-     alt="Magnum logo" height="178">
+     alt="Magnum logo" height="150">
 
 Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in Accuracy Track on the open **[Leaderboard]**. 	
 The NLC2CMD Competition challenges you to build an algorithm that can translate an English description (𝑛𝑙𝑐) of a command line task to its corresponding command line syntax (𝑐). The  **[tellina]** model was the previous SOTA which was used as the baseline.
