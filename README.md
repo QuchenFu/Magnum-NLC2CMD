@@ -3,7 +3,7 @@
 <img src="https://media2.giphy.com/media/LkMwAc7wfZfPENTaKJ/giphy.gif" align="right"
      alt="Magnum logo" width="160" height="178">
 
-Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in accuracy on the leaderboard. 
+Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in accuracy on the open **[leaderboard]**. 
 
 * **ES modules** and **tree-shaking** support.
 * Add Size Limit to **Travis CI**, **Circle CI**, **GitHub Actions**
@@ -43,8 +43,8 @@ and show the real cost of all your internal dependencies.
   </a>
 </p>
 
-[NeurIPS 2020 NLC2CMD competition challenge]: http://nlc2cmd.us-east.mybluemix.net/#/
-
+[NeurIPS 2020 NLC2CMD challenge]: http://nlc2cmd.us-east.mybluemix.net/#/
+[leaderboard]: https://eval.ai/web/challenges/challenge-page/674/leaderboard/1831
 ## Who Uses Size Limit
 
 * [MobX](https://github.com/mobxjs/mobx)
