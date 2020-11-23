@@ -5,7 +5,7 @@
 
 Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in accuracy on the open **[Leaderboard]**. 
 <p align="left">
-<img width="700" alt="Screen Shot 2020-11-23 at 3 38 13 PM" src="https://user-images.githubusercontent.com/31392274/100018358-f34fa600-2da1-11eb-94c6-b848c774aca9.png">
+<img width="650" alt="Screen Shot 2020-11-23 at 3 38 13 PM" src="https://user-images.githubusercontent.com/31392274/100018358-f34fa600-2da1-11eb-94c6-b848c774aca9.png">
 </p>
 
 [NeurIPS 2020 NLC2CMD challenge]: http://nlc2cmd.us-east.mybluemix.net/#/
