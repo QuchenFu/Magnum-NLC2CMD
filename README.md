@@ -4,13 +4,14 @@
      alt="Magnum logo" width="160" height="178">
 
 Magnum-NLC2CMD is the winning team' solution for **[NeurIPS 2020 NLC2CMD challenge]**. It achieved a 0.53 score in accuracy on the open **[Leaderboard]**. 	
-The NLC2CMD Competition challenges you to build an algorithm that can translate an English description (𝑛𝑙𝑐) of a command line task to its corresponding command line syntax (𝑐). The  *[tellina]*(https://github.com/IBM/clai/tree/master/clai/server/plugins/tellina) model was the previous SOTA which was used as the baseline.
+The NLC2CMD Competition challenges you to build an algorithm that can translate an English description (𝑛𝑙𝑐) of a command line task to its corresponding command line syntax (𝑐). The  **[tellina]** model was the previous SOTA which was used as the baseline.
 <p align="left">
 <img width="650" alt="Screen Shot 2020-11-23 at 3 38 13 PM" src="https://user-images.githubusercontent.com/31392274/100018358-f34fa600-2da1-11eb-94c6-b848c774aca9.png">
 </p>
 
 [NeurIPS 2020 NLC2CMD challenge]: http://nlc2cmd.us-east.mybluemix.net/#/
 [leaderboard]: https://eval.ai/web/challenges/challenge-page/674/leaderboard/1831
+[tellina]: https://github.com/IBM/clai/tree/master/clai/server/plugins/tellina
 ## Requirements
 
 * numpy
@@ -33,7 +34,9 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 
 1. Create a virtual environment with python3.6 installed(`virtualenv`).
 2. use `pip3 install -r requirements.txt` to install the two requirements files(`submission_code/src/submission_code/requirements.txt`, `submission_code/src/requirements.txt`)
-3. 
+3. `cd submission_code/src/submission_code/nl2cmd`
+4. run `onmt_train -config nl2cmd.yaml`
+
 
 
 ## Usage
