@@ -14,6 +14,7 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 ## Requirements
 
 <details><summary><b>Show details</b></summary>
+<p>
 * numpy
 * six
 * nltk
@@ -29,6 +30,7 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 * torchvision==0.7.0
 * tqdm==4.46.1
 * OpenNMT-py==2.0.0rc2
+</p>
 </details>
 
 ## How it works
