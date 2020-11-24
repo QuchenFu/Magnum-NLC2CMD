@@ -89,7 +89,8 @@ for i in range(len(confidences)):
 ### Reproduce
 
 1. We used 2x Nvidia 2080Ti GPU + 16G memory machine running Ubuntu18.04LTS
-2. Train multiple models by modify random seed in nl2cmd.yaml, you should also modify the `save_model` to avoid overwrite existing models.
+2. Change the `batch_size` in `nl2cmd.yaml` to the largest your GPU can support without `OOM error`
+2. Train multiple models by modify `seed` in `nl2cmd.yaml`, you should also modify the `save_model` to avoid overwrite existing models.
 3. Hand pick the best performed ones on local test set and put their directories in the main.py
 
 ## References
