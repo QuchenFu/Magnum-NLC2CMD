@@ -37,20 +37,36 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 (`submission_code/src/submission_code/requirements.txt`, `submission_code/src/requirements.txt`)
 
 ### Data pre-processing
-1. We have processed data in `submission_code/src/submission_code/nl2cmd/data`,
-You can also download the Original raw data [here]()
-
+1. We have processed data in `submission_code/src/submission_code/nl2cmd/data`.
+2. You can also download the Original raw data [here]()
+3. `cd submission_code/src/submission_code/nl2cmd/`
+4. `python3 OpenNMT_data_process.py`
+5. `onmt_build_vocab -config nl2cmd.yaml -n_sample 10347 --src_vocab_threshold 2 --tgt_vocab_threshold 2`
 
 ### Train
 
 1. `cd submission_code/src/submission_code/nl2cmd`
 2. `onmt_train -config nl2cmd.yaml`
 
+### Inference
+
+1. `cd submission_code/src/submission_code/nl2cmd`
+2. `onmt_translate -model run/model_step_2000.pt -src invocations_proccess.txt -output pred_2000.txt -gpu 0 -verbose`
+
+### Local test
+
+1. `python3 evaluate.py --annotation_filepath submission-code/src/submission_code/nl2cmd/data/test_data.json --params_filepath submission-code/configs/core/evaluation_params.json --output_folderpath submission-code/logs`
+
+### Evaluate
+
+1. `sh submission_code/BuildDockerImage.sh`
+2. `python3 test_locally`
+
+## Metrics
+
+### Accuracy metric
 
 
-## Usage
-
-### JS Applications
 
 Suitable for applications that have their own bundler and send the JS bundle
 directly to a client (without publishing it to npm). Think of a user-facing app
