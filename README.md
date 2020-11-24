@@ -44,7 +44,7 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 
 ### Data pre-processing
 1. We have processed data in `submission_code/src/submission_code/nl2cmd/data`.
-2. (You can also download the Original raw data) [here](https://ibm.ent.box.com/v/nl2bash-data)
+2. You can also download the Original raw data [here](https://ibm.ent.box.com/v/nl2bash-data)
 3. `cd submission_code/src/submission_code/nl2cmd/`
 4. `python3 OpenNMT_data_process.py`
 5. `onmt_build_vocab -config nl2cmd.yaml -n_sample 10347 --src_vocab_threshold 2 --tgt_vocab_threshold 2`
@@ -72,6 +72,8 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 
 ### Accuracy metric
 
+𝑆𝑐𝑜𝑟𝑒(𝐴(𝑛𝑙𝑐))=max𝑝∈𝐴(𝑛𝑙𝑐)𝑆(𝑝) if ∃𝑝∈𝐴(𝑛𝑙𝑐) such that 𝑆(𝑝)>0; 
+𝑆𝑐𝑜𝑟𝑒(𝐴(𝑛𝑙𝑐))=1|𝐴(𝑛𝑙𝑐)|∑𝑝∈𝐴(𝑛𝑙𝑐)𝑆(𝑝) otherwise.
 
 
 Suitable for applications that have their own bundler and send the JS bundle
