@@ -54,6 +54,7 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 1. `cd submission_code/src/submission_code/nl2cmd`
 2. Modify the `world_size` to the number of GPUs you are using and put the ids as `gpu_ranks`
 3. `onmt_train -config nl2cmd.yaml`
+4. You can also download one of our pre-trained model [here]()
 
 ### Inference
 
