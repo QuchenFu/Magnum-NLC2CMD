@@ -88,7 +88,8 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 
 ### Accuracy metric
 
-𝑆𝑐𝑜𝑟𝑒(𝐴(𝑛𝑙𝑐))=max𝑝∈𝐴(𝑛𝑙𝑐)𝑆(𝑝) if ∃𝑝∈𝐴(𝑛𝑙𝑐) such that 𝑆(𝑝)>0; 
+𝑆𝑐𝑜𝑟𝑒(𝐴(𝑛𝑙𝑐))=max𝑝∈𝐴(𝑛𝑙𝑐)𝑆(𝑝) if ∃𝑝∈𝐴(𝑛𝑙𝑐) such that 𝑆(𝑝)>0;
+ 
 𝑆𝑐𝑜𝑟𝑒(𝐴(𝑛𝑙𝑐))=1|𝐴(𝑛𝑙𝑐)|∑𝑝∈𝐴(𝑛𝑙𝑐)𝑆(𝑝) otherwise.
 
 ### Reproduce
