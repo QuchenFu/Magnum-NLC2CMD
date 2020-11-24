@@ -38,12 +38,12 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 ## How it works
 
 ### Environment
-1. Create a virtual environment with python3.6 installed(`virtualenv`).
+1. Create a virtual environment with python3.6 installed(`virtualenv`)
 2. use `pip3 install -r requirements.txt` to install the two requirements files
 (`submission_code/src/submission_code/requirements.txt`, `submission_code/src/requirements.txt`)
 
 ### Data pre-processing
-1. We have processed data in `submission_code/src/submission_code/nl2cmd/data`.
+1. We have processed data in `submission_code/src/submission_code/nl2cmd/data`
 2. You can also download the Original raw data [here](https://ibm.ent.box.com/v/nl2bash-data)
 3. `cd submission_code/src/submission_code/nl2cmd/`
 4. `python3 OpenNMT_data_process.py`
