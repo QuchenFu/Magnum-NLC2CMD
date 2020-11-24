@@ -79,7 +79,7 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
     </p>
     </details>
     
-    ### Local test
+### Local test
 
 1. `sh submission_code/BuildDockerImage.sh`
 2. `python3 test_locally`
