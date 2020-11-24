@@ -63,6 +63,16 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 ### Evaluate
 
 1. `python3 evaluate.py --annotation_filepath submission-code/src/submission_code/nl2cmd/data/test_data.json --params_filepath submission-code/configs/core/evaluation_params.json --output_folderpath submission-code/logs`
+2. You can change the `gpu=-1` in `main.py` to `gpu=0`, and replace the code in `main.py` accordingly with the following code for faster inference time
+
+```
+invocations = [' '.join(tokenize_eng(i)) for i in invocations]
+translated = translator.translate(invocations, batch_size=n_batch)
+commands = [t[:result_cnt] for t in translated[1]]
+confidences = [ np.exp( list(map(lambda x:x.item(), t[:result_cnt])) )/2 for t in translated[0]]
+for i in range(len(confidences)):
+    confidences[i][0] = 1.0
+```
 
 ### Local test
 
