@@ -101,7 +101,7 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 
 ## References
 
-* [Open-NMT](https://github.com/OpenNMT/OpenNMT-py)
+* [OpenNMT-py](https://github.com/OpenNMT/OpenNMT-py)
 * [Bashlex](https://github.com/idank/bashlex)
 * [clai](https://github.com/IBM/clai)
 * [Tellina](https://github.com/TellinaTool/nl2bash)
