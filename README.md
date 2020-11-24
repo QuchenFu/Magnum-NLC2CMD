@@ -52,7 +52,8 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 ### Train
 
 1. `cd submission_code/src/submission_code/nl2cmd`
-2. `onmt_train -config nl2cmd.yaml`
+2. Modify the `world_size` to the number of GPUs you are using and put the ids as `gpu_ranks`
+3. `onmt_train -config nl2cmd.yaml`
 
 ### Inference
 
@@ -77,10 +78,11 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 
 ### Reproduce
 
-1. Train multiple models by modify random seed in nl2cmd.yaml, you should also modify the `save_model` to avoid overwrite existing models.
-2. Hand pick the best performed ones on local test set and put their directories in the main.py
+1. We used 2x Nvidia 2080Ti GPU + 16G memory machine running Ubuntu18.04LTS
+2. Train multiple models by modify random seed in nl2cmd.yaml, you should also modify the `save_model` to avoid overwrite existing models.
+3. Hand pick the best performed ones on local test set and put their directories in the main.py
 
-## reference
+## References
 
 * [Open-NMT](https://github.com/OpenNMT/OpenNMT-py)
 * [Bashlex](https://github.com/idank/bashlex)
