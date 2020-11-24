@@ -13,8 +13,9 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 [tellina]: https://github.com/IBM/clai/tree/master/clai/server/plugins/tellina
 ## Requirements
 
-<details><summary><b>Show details</b></summary>
+<details><summary>Show details</summary>
 <p>
+##
 * numpy
 * six
 * nltk
@@ -30,6 +31,7 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 * torchvision==0.7.0
 * tqdm==4.46.1
 * OpenNMT-py==2.0.0rc2
+
 </p>
 </details>
 
