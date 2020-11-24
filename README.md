@@ -94,7 +94,7 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 
 ### Reproduce
 
-1. We used 2x Nvidia 2080Ti GPU + 16G memory machine running Ubuntu18.04LTS
+1. We used 2x Nvidia 2080Ti GPU + 16G memory machine running Ubuntu 18.04 LTS
 2. Change the `batch_size` in `nl2cmd.yaml` to the largest your GPU can support without `OOM error`
 2. Train multiple models by modify `seed` in `nl2cmd.yaml`, you should also modify the `save_model` to avoid overwrite existing models.
 3. Hand pick the best performed ones on local test set and put their directories in the main.py
