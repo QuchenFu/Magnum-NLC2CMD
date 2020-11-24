@@ -11,11 +11,12 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 [NeurIPS 2020 NLC2CMD challenge]: http://nlc2cmd.us-east.mybluemix.net/#/
 [leaderboard]: https://eval.ai/web/challenges/challenge-page/674/leaderboard/1831
 [tellina]: https://github.com/IBM/clai/tree/master/clai/server/plugins/tellina
-## Requirements
+
 
 <details><summary>Show details</summary>
 <p>
-##
+## Requirements
+
 * numpy
 * six
 * nltk
