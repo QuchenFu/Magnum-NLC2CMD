@@ -13,6 +13,7 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 [tellina]: https://github.com/IBM/clai/tree/master/clai/server/plugins/tellina
 ## Requirements
 
+<details><summary><b>Show details</b></summary>
 * numpy
 * six
 * nltk
@@ -28,6 +29,7 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 * torchvision==0.7.0
 * tqdm==4.46.1
 * OpenNMT-py==2.0.0rc2
+</details>
 
 ## How it works
 
@@ -53,11 +55,11 @@ Magnum-NLC2CMD is the winning team' solution for the **[NeurIPS 2020 NLC2CMD cha
 1. `cd submission_code/src/submission_code/nl2cmd`
 2. `onmt_translate -model run/model_step_2000.pt -src invocations_proccess.txt -output pred_2000.txt -gpu 0 -verbose`
 
-### Local test
+### Evaluate
 
 1. `python3 evaluate.py --annotation_filepath submission-code/src/submission_code/nl2cmd/data/test_data.json --params_filepath submission-code/configs/core/evaluation_params.json --output_folderpath submission-code/logs`
 
-### Evaluate
+### Local test
 
 1. `sh submission_code/BuildDockerImage.sh`
 2. `python3 test_locally`
