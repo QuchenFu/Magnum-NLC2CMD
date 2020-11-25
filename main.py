@@ -48,7 +48,7 @@ def validate_predictions(predicted_cmds, predicted_confds, n_batch, result_cnt):
 
     for i in range(n_batch):
         assert 1 <= len(predicted_cmds[i]) <= result_cnt, \
-            f'{len(predicted_cmds[i])} commands predicted for an invocations. Expected between 1 and {result_cnt}'
+            f'{len(predicted_cmds[i])} commands predicted for an invocations. Expected between 1 and  {result_cnt}'
 
         assert 1 <= len(predicted_confds[i]) <= result_cnt, \
             f'{len(predicted_confds[i])} confidences predicted for an invocations. Expected between 1 and {result_cnt}'
