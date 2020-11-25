@@ -114,7 +114,7 @@ def annotate(tokens):
     
     # -- File
     _FILE_RE = re.compile(r'([^ ]*\.[^ ]+|' + r'([^ ]*\/)+[^ ]*)|(' +
-        decorate_boundaries(constants._FILE_EXTENSION_RE) + ')')
+                          decorate_boundaries(constants._FILE_EXTENSION_RE) + ')')
     sentence = annotate_ner(_FILE_RE, constants._FILE, sentence, entities)
     
     # -- Other patterns
