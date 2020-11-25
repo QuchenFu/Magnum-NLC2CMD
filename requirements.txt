@@ -1,4 +1,7 @@
 numpy
+six
+nltk
+experiment-impact-tracker
 scikit-learn
 pandas
 flake8==3.8.3
