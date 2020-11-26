@@ -15,6 +15,8 @@ from utils.metric_utils import compute_metric
 from utils.dataset import Nlc2CmdDS
 from utils.dataloaders import Nlc2CmdDL
 
+from model import preprocess
+
 
 def get_parser():
     parser = argparse.ArgumentParser()
@@ -23,6 +25,9 @@ def get_parser():
     parser.add_argument('--params_filepath', type=str, required=True)
     parser.add_argument('--output_folderpath', type=str, required=True)
     parser.add_argument('--mode', type=str, required=False, default='eval')
+
+    parser.add_argument('--data_dir', type=str)
+    parser.add_argument('--data_file', type=str)
 
     return parser
 
@@ -209,6 +214,10 @@ if __name__ == '__main__':
         result = evaluate_model(args.annotation_filepath, args.params_filepath)
     elif args.mode == 'energy':
         result = compute_energyusage(args.annotation_filepath)
+    elif args.mode == 'train':
+        pass
+    elif args.mode == 'preprocess':
+        preprocess(args.data_dir, args.data_file)
 
     with open(os.path.join(args.output_folderpath, 'result.json'), 'w') as f:
         json.dump(result, f)
