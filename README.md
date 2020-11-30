@@ -43,31 +43,23 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 
 ### Environment
 1. Create a virtual environment with python3.6 installed(`virtualenv`)
-2. use `pip3 install -r requirements.txt` to install the two requirements files
-(`submission_code/src/submission_code/requirements.txt`, `submission_code/src/requirements.txt`)
+2. use `pip3 install -r requirements.txt` to install the two requirements files.
 
 ### Data pre-processing
-1. We have processed data in `submission_code/src/submission_code/nl2cmd/data`
+1. Run `python main.py -mode preprocess -data_dir src/data -data_file nl2bash-data.json` and `onmt_build_vocab -config nl2cmd.yaml -n_sample 10347 --src_vocab_threshold 2 --tgt_vocab_threshold 2` to process raw data.
 2. You can also download the Original raw data [here](https://ibm.ent.box.com/v/nl2bash-data)
-3. `cd submission_code/src/submission_code/nl2cmd/`
-4. `python3 OpenNMT_data_process.py`
-5. `onmt_build_vocab -config nl2cmd.yaml -n_sample 10347 --src_vocab_threshold 2 --tgt_vocab_threshold 2`
+
 
 ### Train
-
-1. `cd submission_code/src/submission_code/nl2cmd`
-2. Modify the `world_size` to the number of GPUs you are using and put the ids as `gpu_ranks`
-3. `onmt_train -config nl2cmd.yaml`
+1. ``onmt_train -config src/model/nl2cmd.yaml``
+2. Modify the `world_size` to the number of GPUs you are using and put the ids as `gpu_ranks`.
 4. You can also download one of our pre-trained model [here](https://drive.google.com/file/d/1HXg2j1QuuDBV-8vpj2YdBhBK81pLK7bg/view?usp=sharing)
 
 ### Inference
-
-1. `cd submission_code/src/submission_code/nl2cmd`
-2. `onmt_translate -model run/model_step_2000.pt -src invocations_proccess.txt -output pred_2000.txt -gpu 0 -verbose`
+2. `onmt_translate -model src/model/run/model_step_2000.pt -src src/data/invocations_proccess.txt -output pred_2000.txt -gpu 0 -verbose`
 
 ### Evaluate
-
-1. `python3 evaluate.py --annotation_filepath submission-code/src/submission_code/nl2cmd/data/test_data.json --params_filepath submission-code/configs/core/evaluation_params.json --output_folderpath submission-code/logs`
+1. `python3 main.py --mode eval --annotation_filepath src/data/test_data.json --params_filepath configs/core/evaluation_params.json --output_folderpath src/logs`
 2. You can change the `gpu=-1` in `main.py` to `gpu=0`, and replace the code in `main.py` accordingly with the following code for faster inference time
     <details><summary>Show details</summary>
     <p>
@@ -83,11 +75,6 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
     </p>
     </details>
     
-### Local test
-
-1. `sh submission_code/BuildDockerImage.sh`
-2. `python3 test_locally`
-
 ## Metrics
 
 ### Accuracy metric
