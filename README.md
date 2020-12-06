@@ -46,7 +46,7 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 2. use `pip3 install -r requirements.txt` to install the two requirements files.
 
 ### Data pre-processing
-1. Run `python main.py --mode preprocess --data_dir src/data --data_file nl2bash-data.json` and `cd src/model && onmt_build_vocab -config nl2cmd.yaml -n_sample 10347 --src_vocab_threshold 2 --tgt_vocab_threshold 2` to process raw data.
+1. Run `python3 main.py --mode preprocess --data_dir src/data --data_file nl2bash-data.json` and `cd src/model && onmt_build_vocab -config nl2cmd.yaml -n_sample 10347 --src_vocab_threshold 2 --tgt_vocab_threshold 2` to process raw data.
 2. You can also download the Original raw data [here](https://ibm.ent.box.com/v/nl2bash-data)
 
 
