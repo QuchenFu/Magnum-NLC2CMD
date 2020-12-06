@@ -1,4 +1,3 @@
-
 save_data: run4/nl2cmd
 ## Where the vocab(s) will be written
 src_vocab: run/nl.vocab.src
@@ -9,14 +8,14 @@ overwrite: False
 # Corpus opts:
 data:
     corpus_1:
-        path_src: invocations_proccess.txt
-        path_tgt: cmds_proccess.txt
+        path_src: ../data/invocations_proccess_train.txt
+        path_tgt: ../data/cmds_proccess_train.txt
     valid:
-        path_src: invocations_proccess.txt
-        path_tgt: cmds_proccess.txt
+        path_src: ../data/invocations_proccess_test.txt
+        path_tgt: ../data/cmds_proccess_test.txt
 
 # General opts
-save_model: run4/submission_code
+save_model: run/
 save_checkpoint_steps: 100
 keep_checkpoint: 10
 seed: 34

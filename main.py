@@ -1,34 +1,33 @@
+import sys
+import os
+
+sys.path.append('{}/src/model/utils/metric'.format(os.path.abspath(os.getcwd())))
+
 import argparse
 import time
-import os
 import json
 from datetime import datetime
 import tempfile
 import traceback
-
 import experiment_impact_tracker
 from experiment_impact_tracker import compute_tracker
 from experiment_impact_tracker.compute_tracker import ImpactTracker
-
-from submission_code import main as predictor
-from utils.metric_utils import compute_metric
-from utils.dataset import Nlc2CmdDS
-from utils.dataloaders import Nlc2CmdDL
-
-from model import preprocess
+import src.model.predict as predictor
+from src.model.utils.dataset import Nlc2CmdDS
+from src.model.utils.dataloaders import Nlc2CmdDL
+from src.model.utils.metric.metric_utils import compute_metric
+from src.model import data_process
 
 
 def get_parser():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--annotation_filepath', type=str, required=True)
-    parser.add_argument('--params_filepath', type=str, required=True)
-    parser.add_argument('--output_folderpath', type=str, required=True)
+    parser.add_argument('--annotation_file', type=str, default='test_data.json')
+    parser.add_argument('--params_filepath', type=str)
+    parser.add_argument('--output_folderpath', type=str)
     parser.add_argument('--mode', type=str, required=False, default='eval')
-
-    parser.add_argument('--data_dir', type=str)
-    parser.add_argument('--data_file', type=str)
-
+    parser.add_argument('--data_dir', type=str, default='src/data')
+    parser.add_argument('--data_file', type=str, default='nl2bash-data.json')
     return parser
 
 
@@ -207,8 +206,9 @@ if __name__ == '__main__':
 
     parser = get_parser()
     args = parser.parse_args()
+    print(args)
 
-    os.makedirs(args.output_folderpath, exist_ok=True)
+    # os.makedirs(args.output_folderpath, exist_ok=True)
 
     if args.mode == 'eval':
         result = evaluate_model(args.annotation_filepath, args.params_filepath)
@@ -217,7 +217,8 @@ if __name__ == '__main__':
     elif args.mode == 'train':
         pass
     elif args.mode == 'preprocess':
-        preprocess(args.data_dir, args.data_file)
+        data_process.preprocess(args.data_dir, args.data_file)
 
-    with open(os.path.join(args.output_folderpath, 'result.json'), 'w') as f:
-        json.dump(result, f)
+    if args.mode in ['eval', 'energy']:
+        with open(os.path.join(args.output_folderpath, 'result.json'), 'w') as f:
+            json.dump(result, f)

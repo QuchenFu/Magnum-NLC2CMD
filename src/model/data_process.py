@@ -1,18 +1,20 @@
 import json
 import random
-from utils.metric.bashlint.data_tools import bash_tokenizer
-from utils.nlp_tools import tokenizer
+import os
+from src.model.utils.metric.bashlint.data_tools import bash_tokenizer
+from src.model.utils.nlp_tools import tokenizer
+
 
 def tokenize_eng(text):
     return tokenizer.ner_tokenizer(text)[0]
 
 def tokenize_bash(text):
-    return bash_tokenizer(text)
+    return bash_tokenizer(text,  loose_constraints=True, arg_type_only=False)
 
 
 def preprocess(data_dir, data_file):
     data = {}
-    with open(data_dir+data_file) as f:
+    with open(os.path.join(data_dir,data_file)) as f:
         raw_data = json.load(f)
     for i in  range(1, len(raw_data.keys())+1):
         data[str(i)] = raw_data[str(i)]
