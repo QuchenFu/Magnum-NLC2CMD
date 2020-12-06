@@ -1,4 +1,4 @@
-save_data: run4/nl2cmd
+save_data: run/nl2cmd
 ## Where the vocab(s) will be written
 src_vocab: run/nl.vocab.src
 tgt_vocab: run/cmd.vocab.tgt
