@@ -15,7 +15,7 @@ data:
         path_tgt: ../data/cmds_proccess_test.txt
 
 # General opts
-save_model: run/
+save_model: run/model
 save_checkpoint_steps: 100
 keep_checkpoint: 10
 seed: 34
