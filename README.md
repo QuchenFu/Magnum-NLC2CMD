@@ -94,6 +94,6 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 
 * [OpenNMT-py](https://github.com/OpenNMT/OpenNMT-py)
 * [Bashlex](https://github.com/idank/bashlex)
-* [clai](https://github.com/IBM/clai)
+* [Clai](https://github.com/IBM/clai)
 * [Tellina](https://github.com/TellinaTool/nl2bash)
 * [Training Tips for the Transformer Model](https://ufal.mff.cuni.cz/pbml/110/art-popel-bojar.pdf)
