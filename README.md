@@ -11,7 +11,7 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 </p>
 
 [NeurIPS 2020 NLC2CMD challenge]: http://nlc2cmd.us-east.mybluemix.net/#/
-[Magnum Research Group]:https://magnum.io
+[Magnum Research Group]:https://www.magnum.io
 [Institute for Software Integrated Systems]:https://www.isis.vanderbilt.edu
 [leaderboard]: https://eval.ai/web/challenges/challenge-page/674/leaderboard/1831
 [tellina]: https://github.com/IBM/clai/tree/master/clai/server/plugins/tellina
