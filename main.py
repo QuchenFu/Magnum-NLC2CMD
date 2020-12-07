@@ -22,7 +22,7 @@ from src.model import data_process
 def get_parser():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--annotation_file', type=str, default='test_data.json')
+    parser.add_argument('--annotation_filepath', type=str, default='test_data.json')
     parser.add_argument('--params_filepath', type=str)
     parser.add_argument('--output_folderpath', type=str)
     parser.add_argument('--mode', type=str, required=False, default='eval')

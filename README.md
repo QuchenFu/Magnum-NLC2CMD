@@ -56,7 +56,7 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 4. You can also download one of our pre-trained model [here](https://drive.google.com/file/d/1HXg2j1QuuDBV-8vpj2YdBhBK81pLK7bg/view?usp=sharing)
 
 ### Inference
-2. `onmt_translate -model src/model/run/model_step_2000.pt -src src/data/invocations_proccess.txt -output pred_2000.txt -gpu 0 -verbose`
+2. `onmt_translate -model src/model/run/model_step_2000.pt -src src/data/invocations_proccess_test.txt -output pred_2000.txt -gpu 0 -verbose`
 
 ### Evaluate
 1. `python3 main.py --mode eval --annotation_filepath src/data/test_data.json --params_filepath configs/core/evaluation_params.json --output_folderpath src/logs`
