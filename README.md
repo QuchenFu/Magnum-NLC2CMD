@@ -59,7 +59,7 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 2. `onmt_translate -model src/model/run/model_step_2000.pt -src src/data/invocations_proccess_test.txt -output pred_2000.txt -gpu 0 -verbose`
 
 ### Evaluate
-1. `python3 main.py --mode eval --annotation_filepath src/data/test_data.json --params_filepath src/configs/core/evaluation_params.json --output_folderpath src/logs --model_dir src/model/run  --model_file _step_2400.pt _step_2500.pt`
+1. `python3 main.py --mode eval --annotation_filepath src/data/test_data.json --params_filepath src/configs/core/evaluation_params.json --output_folderpath src/logs --model_dir src/model/run  --model_file model_step_2400.pt model_step_2500.pt`
 2. You can change the `gpu=-1` in `main.py` to `gpu=0`, and replace the code in `main.py` accordingly with the following code for faster inference time
     <details><summary>Show details</summary>
     <p>

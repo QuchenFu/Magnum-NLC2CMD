@@ -29,7 +29,7 @@ def get_parser():
     parser.add_argument('--data_dir', type=str, default='src/data')
     parser.add_argument('--data_file', type=str, default='nl2bash-data.json')
     parser.add_argument('--model_dir', type=str, default='src/model/run')
-    parser.add_argument('--model_file',nargs='*', default=['_step_2500.pt'], type=str)
+    parser.add_argument('--model_file',nargs='*', default=['model_step_2500.pt'], type=str)
     return parser
 
 
