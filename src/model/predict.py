@@ -2,6 +2,7 @@ from .utils.nlp_tools import tokenizer
 from onmt.translate.translator import build_translator
 from argparse import Namespace
 import math
+import os
 
 
 
@@ -10,7 +11,7 @@ def tokenize_eng(text):
     return tokenizer.ner_tokenizer(text)[0]
 
 
-def predict(invocations, result_cnt=5):
+def predict(invocations, model_dir, model_file, result_cnt=5):
     """
     Function called by the evaluation script to interface the participants submission_code
     `predict` function accepts the natural language invocations as input, and returns
@@ -28,10 +29,7 @@ def predict(invocations, result_cnt=5):
                                                  Shape: (n_batch, result_cnt)
     """
     opt = Namespace(models=[
-        'src/submission_code/nl2cmd/run/model_step_2100.pt',
-        'src/submission_code/nl2cmd/run2/model_step_2100.pt',
-        'src/submission_code/nl2cmd/run3/model_step_2000.pt',
-        'src/submission_code/model_step_2000.pt'
+        os.path.join(model_dir, file) for file in model_file
     ], n_best=5,
         avg_raw_probs=False,
         alpha=0.0, batch_type='sents', beam_size=5,

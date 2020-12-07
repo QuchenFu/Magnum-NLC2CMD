@@ -28,6 +28,8 @@ def get_parser():
     parser.add_argument('--mode', type=str, required=False, default='eval')
     parser.add_argument('--data_dir', type=str, default='src/data')
     parser.add_argument('--data_file', type=str, default='nl2bash-data.json')
+    parser.add_argument('--model_dir', type=str, default='src/model/run')
+    parser.add_argument('--model_file',nargs='*', default=['_step_2500.pt'], type=str)
     return parser
 
 
@@ -61,14 +63,17 @@ def validate_predictions(predicted_cmds, predicted_confds, n_batch, result_cnt):
             f'Confidence value beyond the allowed range of [0.0, 1.0] found in predictions'
 
 
-def get_predictions(nlc2cmd_dl):
+def get_predictions(nlc2cmd_dl,model_dir, model_file ):
     result_cnt = 5
     i = 0
     ground_truths = []
     predicted_cmds, predicted_confds = [], []
 
     for invocations, cmds in nlc2cmd_dl:
-        batch_predicted_cmds, batch_predicted_confd = predictor.predict(invocations, result_cnt=result_cnt)
+        batch_predicted_cmds, batch_predicted_confd = predictor.predict(invocations,
+                                                                        model_dir,
+                                                                        model_file,
+                                                                        result_cnt=result_cnt)
         validate_predictions(batch_predicted_cmds, batch_predicted_confd, len(invocations), result_cnt)
 
         ground_truths.extend(cmds)
@@ -121,14 +126,14 @@ def compute_score(ground_truths, predicted_cmds, predicted_confds, metric_params
     return score
 
 
-def evaluate_model(annotation_filepath, params_filepath):
+def evaluate_model(annotation_filepath, params_filepath, model_dir, model_file):
     try:
         params = get_params(params_filepath)
 
         nlc2cmd_dl = get_dataloader(annotation_filepath)
 
         stime = time.time()
-        fn_return = get_predictions(nlc2cmd_dl)
+        fn_return = get_predictions(nlc2cmd_dl, model_dir, model_file)
         total_time_taken = time.time() - stime
 
         ground_truths, predicted_cmds, predicted_confds = fn_return
@@ -162,7 +167,7 @@ def evaluate_model(annotation_filepath, params_filepath):
     return result
 
 
-def compute_energyusage(annotation_filepath):
+def compute_energyusage(annotation_filepath, model_dir, model_file):
     try:
         tmplogdir = tempfile.mkdtemp()
         print(f'Logging energy evaluation in directory: {tmplogdir}')
@@ -171,7 +176,7 @@ def compute_energyusage(annotation_filepath):
         nlc2cmd_dl = get_dataloader(annotation_filepath)
 
         tracker.launch_impact_monitor()
-        grnd_truth, _, _ = get_predictions(nlc2cmd_dl)
+        grnd_truth, _, _ = get_predictions(nlc2cmd_dl, model_dir, model_file)
         n = len(grnd_truth)
 
         info = tracker.get_latest_info_and_check_for_errors()
@@ -206,19 +211,17 @@ if __name__ == '__main__':
 
     parser = get_parser()
     args = parser.parse_args()
-    print(args)
-
-    # os.makedirs(args.output_folderpath, exist_ok=True)
 
     if args.mode == 'eval':
-        result = evaluate_model(args.annotation_filepath, args.params_filepath)
+        result = evaluate_model(args.annotation_filepath, args.params_filepath, args.model_dir, args.model_file)
     elif args.mode == 'energy':
-        result = compute_energyusage(args.annotation_filepath)
+        result = compute_energyusage(args.annotation_filepath,  args.model_dir, args.model_file)
     elif args.mode == 'train':
         pass
     elif args.mode == 'preprocess':
         data_process.preprocess(args.data_dir, args.data_file)
 
     if args.mode in ['eval', 'energy']:
+        os.makedirs(args.output_folderpath, exist_ok=True)
         with open(os.path.join(args.output_folderpath, 'result.json'), 'w') as f:
             json.dump(result, f)

@@ -30,6 +30,11 @@ def preprocess(data_dir, data_file):
     for j in all_index[int(len(all_index)*0.8):]:
         test_data[str(j)] = data[str(j)]
 
+    with open('src/data/train_data.json', 'w') as f:
+        json.dump(train_data, f)
+    with open('src/data/test_data.json', 'w') as f:
+        json.dump(test_data, f)
+
     for split, data in zip(['train', 'test'],[train_data, test_data]):
         english_txt = []
         bash_txt = []
