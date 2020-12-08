@@ -97,3 +97,7 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 * [Clai](https://github.com/IBM/clai)
 * [Tellina](https://github.com/TellinaTool/nl2bash)
 * [Training Tips for the Transformer Model](https://ufal.mff.cuni.cz/pbml/110/art-popel-bojar.pdf)
+
+## License
+
+See the [LICENSE](https://github.com/QuchenFu/Magnum-NLC2CMD/blob/final/LICENSE) file for license rights and limitations (MIT).
