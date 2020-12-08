@@ -2,7 +2,7 @@ import json
 import random
 import os
 from src.model.utils.metric.bashlint.data_tools import bash_tokenizer
-from src.model.utils.nlp_tools import tokenizer
+from src.model.utils.nl2bash.nlp_tools import tokenizer
 
 
 def tokenize_eng(text):

@@ -1,0 +1,3 @@
+[submodule "src/model/utils/nl2bash"]
+	path = src/model/utils/nl2bash
+	url = https://github.com/TellinaTool/nl2bash.git
