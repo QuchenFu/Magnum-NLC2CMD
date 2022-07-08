@@ -91,12 +91,26 @@ The NLC2CMD Competition challenges you to build an algorithm that can translate 
 3. Hand pick the best performed ones on local test set and put their directories in the main.py
 
 ## References
+If you use this repository, please consider citing:
+
+```
+@INPROCEEDINGS{9680023,
+  author={Fu, Quchen and Teng, Zhongwei and White, Jules and Schmidt, Douglas C.},
+  booktitle={2021 20th IEEE International Conference on Machine Learning and Applications (ICMLA)}, 
+  title={A Transformer-based Approach for Translating Natural Language to Bash Commands}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={1245-1248},
+  doi={10.1109/ICMLA52953.2021.00202}}
+```
 
 * [OpenNMT-py](https://github.com/OpenNMT/OpenNMT-py)
 * [Bashlex](https://github.com/idank/bashlex)
 * [Clai](https://github.com/IBM/clai)
 * [Tellina](https://github.com/TellinaTool/nl2bash)
 * [Training Tips for the Transformer Model](https://ufal.mff.cuni.cz/pbml/110/art-popel-bojar.pdf)
+* [bash_gen](https://github.com/magnumresearchgroup/bash_gen)
 
 ## License
 
